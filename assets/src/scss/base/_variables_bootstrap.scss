@@ -1,0 +1,16 @@
+@use "../base/variables_drupal" as *;
+
+:root {
+  --bs-body-font-family: 'Lato', sans-serif;
+}
+
+$blue: #003CC5 !default;
+$form-text-margin-top: 0 !default;
+$legend-font-size: 1rem !default;
+$table-cell-padding-x: .75rem !default;
+
+$color-contrast-dark:      $bg-base-01;
+$color-contrast-light:     $bg-base-03;
+
+
+

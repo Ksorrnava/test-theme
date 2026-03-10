@@ -1,0 +1,88 @@
+@use "../base/variables_drupal" as *;
+
+.page-site-advertisement {
+  &--wrapper {
+    border-top: 1px solid $color-eternity8;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    background-color: $color-eternity10;
+    padding: 24px;
+  }
+
+  &--content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    border-radius: 8px;
+    margin-top: 24px;
+
+    h1,
+    h2 {
+      @extend %raleway-700;
+      color: $color-eternity0;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      letter-spacing: -0.25px;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.333;
+    }
+
+    h2 {
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    p,
+    li {
+      @extend %inter-400;
+      color: $color-eternity2;
+      font-size: 15px;
+      letter-spacing: -0.4px;
+      line-height: 26px;
+      text-align: justify;
+    }
+
+    a {
+      @extend %inter-500;
+      color: $color-energy0;
+      font-size: 15px;
+      letter-spacing: -0.4px;
+      line-height: 26px;
+
+      &:hover {
+        color: $color-energy3;
+      }
+    }
+  }
+}
+
+.page-site-advertisement__title {
+  @extend %raleway-700;
+  font-size: 18px;
+  line-height: 1.333;
+  color: $color-eternity0;
+  text-align: center;
+  letter-spacing: -0.25px;
+}
+
+@media (min-width: $screen__l) {
+  .page-site-advertisement {
+    &--wrapper {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border: 1px solid $color-eternity8;
+    }
+
+    &--content {
+      padding: 12px 24px;
+      row-gap: 16px;
+      border: 1px solid $color-eternity8;
+
+      img {
+        max-width: 927px;
+      }
+    }
+  }
+}

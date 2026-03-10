@@ -1,0 +1,297 @@
+@use "../base/variables_drupal" as *;
+
+#sidebarCommentsBlock {
+  .comment__title {
+    @extend %raleway-700;
+  }
+
+  .comment__link-comments {
+    @extend %inter-500;
+  }
+
+  .comment-tabs__link {
+    @extend %inter-500;
+  }
+}
+
+#sidebarCommentsBlockContent {
+  display: none;
+
+  .comment-list__item {
+    &-name {
+      @extend %inter-600;
+    }
+
+    &-body {
+      @extend %inter-400;
+    }
+
+    &-date {
+      @extend %inter-500;
+    }
+
+    &-node-link {
+      @extend %inter-600;
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .region-sidebar-second {
+    padding: 0 24px 0 0;
+  }
+
+  .nav-pills.comment-tabs {
+    background: $color-eternity10;
+    border: 1px solid $color-eternity8;
+    border-bottom: unset;
+    border-radius: 8px 8px 0 0;
+    padding: 24px 24px 0 24px;
+    row-gap: 16px;
+
+    &:not(:first-child) {
+      margin-top: 24px;
+    }
+
+    .comment__title {
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: -0.25px;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      color: $color-eternity0;
+    }
+
+    .comment__link-comments {
+      align-items: center;
+      display: flex;
+      font-size: 15px;
+      justify-content: flex-end;
+      letter-spacing: -0.4px;
+      line-height: 26px;
+      margin-left: auto;
+
+      a {
+        color: $color-eternity4;
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: $color-eternity3;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .comment-tabs__link {
+      color: $color-eternity4;
+      font-size: 15px;
+      letter-spacing: -0.4px;
+      line-height: 26px;
+      padding: 4px 12px;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &.active {
+        background: $color-energy10;
+        border-radius: 8px;
+        color: $color-energy5;
+      }
+    }
+  }
+
+  .comments__heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    row-gap: 16px;
+    column-gap: 16px;
+  }
+
+  .comment__sort-options {
+    display: flex;
+    flex-direction: row;
+    column-gap: 16px;
+  }
+
+  #sidebarCommentsBlockContent {
+    background: $color-eternity10;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid $color-eternity8;
+    border-top: transparent;
+    display: flex;
+    padding: 24px;
+
+    .tab-pane {
+      max-width: 100%;
+    }
+
+    .loader {
+      align-self: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .comment-list__item {
+      border-bottom: 1px solid $color-eternity8;
+      column-gap: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 15px;
+      letter-spacing: -0.4px;
+      line-height: 26px;
+      padding: 16px 0;
+
+      &:first-child {
+        padding: 0 0 16px 0;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+        border: unset
+      }
+
+      &-number {
+        display: none;
+      }
+
+      &-image {
+        border-radius: 50%;
+        height: 24px;
+        overflow: hidden;
+        width: 24px;
+      }
+
+      &-name {
+        color: $color-eternity0;
+      }
+
+      &-date {
+        color: $color-eternity4;
+      }
+
+      &-body {
+        color: $color-eternity2;
+        margin: 6px 0 4px 0;
+        width: 100%;
+      }
+
+      &-body,
+      &-node-link {
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        box-orient: vertical;
+        display: -moz-box;
+        display: -webkit-box;
+        line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &-node-link {
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        width: 100%;
+
+        a {
+          line-height: 1.7;
+          color: $color-tenderness0;
+        }
+      }
+
+      .vote-widget--like-and-dislike {
+        align-items: center;
+        background: $color-eternity9;
+        border-radius: 8px;
+        column-gap: 24px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 4px 12px;
+        position: relative;
+        margin-top: 4px;
+
+        &:after {
+          background: $color-eternity5;
+          content: "";
+          height: calc(100% - 8px);
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 1px;
+        }
+
+        .vote-like,
+        .vote-dislike {
+          align-items: center;
+          column-gap: 8px;
+          display: flex;
+
+          &:hover {
+            cursor: pointer;
+
+            span {
+              color: $color-eternity0;
+            }
+          }
+
+          .count {
+            color: $color-eternity3;
+            font-size: 14px;
+            letter-spacing: -0.3px;
+            line-height: 24px;
+          }
+
+          a {
+            background-position: unset !important;
+            height: 20px;
+            width: 20px;
+          }
+        }
+
+        .vote-like a {
+          background: url("/themes/custom/elfbv/assets/media/icons/like.svg");
+
+          &.voted {
+            background: url("/themes/custom/elfbv/assets/media/icons/like-voted.svg");
+          }
+        }
+
+        .vote-dislike a {
+          background: url("/themes/custom/elfbv/assets/media/icons/dislike.svg");
+
+          &.voted {
+            background: url("/themes/custom/elfbv/assets/media/icons/dislike-voted.svg");
+          }
+        }
+
+      }
+
+      .count-value {
+        align-items: center;
+        background: $color-eternity9;
+        border-radius: 8px;
+        color: $color-eternity3;
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        justify-content: center;
+        letter-spacing: -0.3px;
+        line-height: 24px;
+        padding: 4px 8px 4px 36px;
+        position: relative;
+
+        &:after {
+          content: url("/themes/custom/elfbv/assets/media/icons/show.svg");
+          height: 18px;
+          left: 8px;
+          position: absolute;
+        }
+      }
+    }
+  }
+}

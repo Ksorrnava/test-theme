@@ -1,0 +1,90 @@
+@use "../base/variables_drupal" as *;
+
+.view-id-leaf_child.view-display-id-main {
+  .block-forum-category-description-block {
+    margin-bottom: 16px;
+    overflow: hidden;
+    position: relative;
+
+    &:after {
+      content: url("/themes/custom/elfbv/assets/media/background-category-description.svg");
+      position: absolute;
+      right: -105px;
+      top: 0;
+    }
+
+    .content {
+      background: $color-harmony10;
+      border-color: $color-eternity7;
+      border-style: solid;
+      border-width: 1px 0;
+      display: flex;
+      isolation: isolate;
+      padding: 20px 16px 20px 56px;
+      position: relative;
+      align-items: flex-start;
+      flex-direction: column;
+
+      &--before-icon {
+        align-items: center;
+        display: flex;
+        height: 28px;
+        justify-content: center;
+        left: 16px;
+        position: absolute;
+        top: 21px;
+        width: 28px;
+      }
+
+      &--title {
+        @extend %raleway-700;
+        color: $color-eternity0;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        font-size: 18px;
+        letter-spacing: -0.25px;
+        line-height: 24px;
+      }
+
+      &--description {
+        @extend %inter-400;
+        color: $color-eternity3;
+        font-size: 14px;
+        letter-spacing: -0.3px;
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .view-id-leaf_child.view-display-id-main {
+    .block-forum-category-description-block {
+      &:after {
+        right: 0;
+      }
+
+      .content {
+        border-radius: 8px;
+        border-width: 1px;
+        max-height: 148px;
+        min-height: 148px;
+        padding: 28px 140px 28px 72px;
+
+        &--before-icon {
+          left: 28px;
+          top: 28px;
+        }
+
+        &--title {
+          font-size: 24px;
+          line-height: 32px;
+        }
+
+        &--description {
+          font-size: 15px;
+          line-height: 26px;
+        }
+      }
+    }
+  }
+}

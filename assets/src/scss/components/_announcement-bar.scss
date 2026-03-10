@@ -1,0 +1,22 @@
+@use "../base/variables_drupal" as *;
+
+.comment--header {
+  & + .announcement-bar {
+    margin-top: 16px;
+  }
+}
+
+.announcement-bar {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: $color-tenderness10;
+  margin-bottom: 24px;
+
+  .announcement-bar__text {
+    @extend %inter-400;
+    font-size: 14px;
+    color: $color-eternity2;
+    line-height: 1.72;
+    letter-spacing: -0.3px;
+  }
+}

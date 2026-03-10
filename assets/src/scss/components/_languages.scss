@@ -1,0 +1,30 @@
+@use "../base/variables_drupal" as *;
+
+.languages {
+  align-items: center;
+  column-gap: 10px;
+  display: flex;
+  height: 100%;
+  position: relative;
+
+  &__icon-before {
+
+  }
+
+  &__title {
+    @extend %inter-500;
+    color: $color-eternity0;
+    font-size: 15px;
+    letter-spacing: -0.4px;
+    line-height: 26px;
+  }
+
+  &__dropdown {
+    position: absolute;
+    width: 200px;
+  }
+
+  &__icon-after {
+
+  }
+}

@@ -1,0 +1,30 @@
+<div id="left-top-block" class="left-top-block-left">
+  {%  if leaf != false %}
+  <div class="leaf-wrapper">
+    <img class="leaf-logo" src="{{ leaf.url }}" alt="{{ leaf.title }}">
+    <div class="leaf-title-wrapper">
+      <div class="leaf-title">{{ leaf.title }}</div>
+      <div class="leaf-users">
+       <span class="leaf-participants" >{{ 'Participants'|t }}: </span>{{ leaf.users }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {{  drupal_block('add_leaf_to_favorite') }}
+</div>
+
+{{ page.sidebar_first }}
+<div class="calendar">
+  <div class="day-name">
+    {{ calendar.day_name }}
+  </div>
+  <div class="day-month">
+    <span class="day">
+      {{ calendar.day }}
+    </span>
+    <span class="month">
+      {{ calendar.month|lower ~ '.' }}
+    </span>
+
+  </div>
+</div>

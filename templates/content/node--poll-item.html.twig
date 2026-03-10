@@ -1,0 +1,37 @@
+<section class="poll-item-detailed">
+  <div class="poll-item-detailed__heading">
+    <h1 class="poll-item-detailed__title">
+      <span class="poll-item-detailed__heading-icon">
+        {{ source("/themes/custom/elfbv/assets/media/icons/list.svg") }}
+      </span>
+
+      {{ elements["#title"] | striptags }}
+    </h1>
+
+    <div class="poll-item-detailed__date">
+      {{ date }}
+    </div>
+  </div>
+
+  <div class="poll-item-detailed__preview-image">
+    {{ content.preview_image }}
+  </div>
+
+  <div>
+    {{ content.attachments }}
+  </div>
+
+  <div>
+    {{ content.poll_paragraph }}
+  </div>
+
+  <div>
+    {{ content.addtoany }}
+  </div>
+</section>
+
+<div class="view-comment poll-item__comments">
+    <div class="node-comments">
+        {{ content.poll_comments }}
+    </div>
+</div>

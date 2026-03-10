@@ -1,0 +1,29 @@
+@use "../base/variables_drupal" as *;
+
+.contextual-region.menu--forum-additional-menu .navbar-nav .nav-item a {
+  @extend %inter-400;
+}
+
+@media (min-width: $screen__l) {
+  .contextual-region.menu--forum-additional-menu,
+  .menu--forum-additional-menu {
+    margin: 24px 0 0 8px;
+
+    .navbar-nav {
+      column-gap: 20px;
+      flex-direction: row;
+      row-gap: 10px;
+
+      .nav-item {
+        a {
+          color: $color-eternity0;
+          font-size: 14px;
+          height: unset;
+          letter-spacing: -0.3px;
+          line-height: 24px;
+          padding: 0;
+        }
+      }
+    }
+  }
+}

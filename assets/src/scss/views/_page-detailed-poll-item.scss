@@ -1,0 +1,149 @@
+@use "../base/variables_drupal" as *;
+
+body[class*="-poll-"] {
+  .comment-list__item-links-wrapper {
+    display: flex;
+    flex-direction: row;
+    column-gap: 16px;
+
+    a {
+      @extend %inter-600;
+      font-size: 14px;
+      line-height: 1.714;
+      letter-spacing: -0.3px;
+      color: $color-tenderness0;
+    }
+
+    .replies {
+      position: relative;
+      padding-right: 24px;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 12px;
+        height: 10px;
+        background-color: $color-eternity4;
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/arrow-top.svg");
+        mask-repeat: no-repeat;
+        mask-size: 12px 10px;
+        mask-position: 50% 50%;
+        transition-property: transform;
+        transition-duration: 0.3s;
+        transition-timing-function: ease;
+        transform: translateY(-50%);
+      }
+    }
+
+    a[href*="/reply/"] {
+      color: $color-eternity4;
+    }
+  }
+
+  .cover-rotate {
+    .replies {
+      &:after {
+        transform: rotate(180deg) translateY(50%);
+      }
+    }
+  }
+}
+
+.poll-item-detailed {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  .field--name-attachments {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+  }
+
+  .poll,
+  .vote-form {
+    border: unset;
+    padding: 0;
+  }
+}
+
+.poll-item__comments {
+  margin-top: 24px;
+}
+
+.poll-item-detailed,
+.poll-item__comments {
+  padding: 16px;
+  background-color: $color-eternity10;
+  border-top: 1px solid $color-eternity8;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.poll-item-detailed__heading {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.poll-item-detailed__heading-icon {
+  display: inline-flex;
+  padding: 7px 8px;
+  border-radius: 4px;
+  background-color: $color-eternity9;
+  margin-right: 8px;
+}
+
+.poll-item-detailed__title {
+  @extend %raleway-700;
+  font-size: 20px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  line-height: 1.4;
+  letter-spacing: -0.25px;
+  color: $color-eternity0;
+}
+
+.poll-item-detailed__date {
+  @extend %inter-500;
+  font-size: 15px;
+  line-height: 1.733;
+  letter-spacing: -0.4px;
+  color: $color-eternity4;
+  min-width: max-content;
+
+  & > .field {
+    display: flex;
+    align-items: center;
+    height: 30px;
+  }
+}
+
+.poll-item-detailed__preview-image {
+  img {
+    border-radius: 8px;
+    overflow-y: hidden;
+  }
+
+  .media-library-item__name {
+    display: none;
+  }
+}
+
+@media (min-width: $screen__l) {
+  .poll-item-detailed,
+  .poll-item__comments {
+    padding: 24px;
+    border-bottom: 1px solid $color-eternity8;
+    border-right: 1px solid $color-eternity8;
+    border-left: 1px solid $color-eternity8;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .poll-item-detailed__heading {
+    flex-direction: row;
+    column-gap: 16px;
+  }
+}

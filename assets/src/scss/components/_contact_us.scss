@@ -1,0 +1,453 @@
+@use "../base/variables_drupal" as *;
+
+.modal--contact-us {
+  border: unset;
+  bottom: 0 !important;
+  overflow-y: auto;
+  top: 0 !important;
+  width: 100% !important;
+
+  .ui-dialog-titlebar {
+    background: $color-eternity10;
+    border: unset;
+    border-bottom: 1px solid $color-eternity8;
+    height: 60px;
+
+    span {
+      display: none;
+    }
+
+    button {
+      background-image: url("/themes/custom/elfbv/assets/media/icons/full-arrow-left.svg");
+      box-shadow: unset !important;
+      left: 16px;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: 20px;
+    }
+  }
+
+  #drupal-modal {
+    height: auto !important;
+    max-height: unset !important;
+    overflow: unset;
+    padding: 0;
+  }
+}
+
+.form-content__wrapper {
+  display: flex;
+  row-gap: 20px;
+  flex-direction: column;
+}
+
+.form--contact-us--wrapper {
+  height: 100%;
+
+  .image-placeholder {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+
+    &:after {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
+      bottom: 0;
+      content: '';
+      height: 64px;
+      position: absolute;
+      right: 0;
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .image-placeholder--mobile {
+    max-height: 276px;
+  }
+
+  .image-placeholder--desktop {
+    display: none;
+  }
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 16px 16px 16px;
+    row-gap: 16px;
+
+    .help-text {
+      h2 {
+        @extend %raleway-700;
+        color: $color-eternity0;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        font-size: 18px;
+        left: 56px;
+        letter-spacing: -0.25px;
+        line-height: 24px;
+        position: absolute;
+        text-align: center;
+        top: -42px;
+      }
+
+      span {
+        @extend %inter-400;
+        align-items: center;
+        color: $color-eternity2;
+        display: flex;
+        font-size: 14px;
+        letter-spacing: -0.3px;
+        line-height: 24px;
+        padding: 0;
+      }
+    }
+
+    .form-wrapper {
+      width: 100%;
+    }
+
+    .form-item {
+      margin: 0;
+      position: relative;
+
+      label {
+        display: none;
+      }
+
+      input,
+      textarea,
+      select {
+        background: $color-eternity9;
+        border-radius: 8px;
+        border: 1px solid $color-eternity8;
+        box-shadow: unset;
+        padding: 10px 16px;
+
+        &::placeholder {
+          @extend %inter-400;
+          color: $color-eternity4;
+          font-size: 15px;
+          letter-spacing: -0.4px;
+          line-height: 26px;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+          border: 1px solid #D5D5D5;
+        }
+      }
+
+      .select2-container.select2-container--default {
+        left: unset !important;
+        width: 100% !important;
+
+        &.select2-container--below {
+          margin-top: unset;
+        }
+
+        &.select2-container--open .select2-selection--single .select2-selection__arrow {
+          transform: rotate(180deg);
+        }
+
+        .select2-selection.select2-selection--single {
+          align-items: center;
+          background: $color-eternity9;
+          border-radius: 8px;
+          border: 1px solid $color-eternity8 !important;
+          display: flex;
+          flex-direction: row;
+          height: unset !important;
+          outline: unset;
+          padding: 9px 44px 9px 16px;
+
+          &:hover,
+          &:focus,
+          &:active {
+            border-color: #D5D5D5 !important;
+          }
+        }
+
+        .select2-selection__rendered {
+          @extend %inter-400;
+          color: $color-eternity4;
+          font-size: 15px;
+          letter-spacing: -0.4px;
+          line-height: 26px;
+          margin-right: 4px;
+          padding-left: 0;
+        }
+
+        .select2-selection__arrow {
+          right: 16px !important;
+          top: unset !important;
+          transition: all .5s ease;
+
+          &:after {
+            content: url("/themes/custom/elfbv/assets/media/icons/arrow-down.svg");
+            position: absolute;
+            left: 50%;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+          }
+
+          b {
+            display: none;
+          }
+        }
+
+      }
+    }
+
+    .field--name-message .form-textarea {
+      max-height: 140px;
+    }
+
+    .btn-primary {
+      @extend %raleway-700;
+      background: $color-tenderness0;
+      border-radius: 8px;
+      border: $color-tenderness0;
+      color: $color-eternity10;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      font-size: 15px;
+      line-height: 26px;
+      padding: 10px 24px;
+      width: 100%;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: $color-tenderness4;
+        border: $color-tenderness4;
+      }
+    }
+  }
+
+  .success-message--wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px 16px 16px;
+    row-gap: 20px;
+
+    h2 {
+      @extend %raleway-700;
+      color: $color-eternity0;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      font-size: 20px;
+      left: 56px;
+      letter-spacing: -0.25px;
+      line-height: 28px;
+      position: absolute;
+      text-align: center;
+      top: -42px;
+    }
+
+    span {
+      @extend %inter-500;
+      background: $color-existence10;
+      border-radius: 8px;
+      color: $color-existence5;
+      display: flex;
+      font-size: 14px;
+      letter-spacing: -0.3px;
+      line-height: 24px;
+      padding: 12px 16px 12px 52px;
+      position: relative;
+
+      &:before {
+        content: url("/themes/custom/elfbv/assets/media/icons/accept.svg");
+        left: 23px;
+        position: absolute;
+        top: 15px;
+      }
+    }
+
+    a {
+      @extend %raleway-700;
+      background: $color-tenderness9;
+      border-radius: 8px;
+      color: $color-tenderness0;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      font-size: 15px;
+      line-height: 26px;
+      padding: 10px 24px;
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: $color-tenderness8;
+      }
+    }
+  }
+}
+
+.user-logged-in .form--contact-us--wrapper .form-content {
+  .form-item-name,
+  .form-item-mail {
+    @extend %inter-400;
+    color: $color-eternity3;
+    font-size: 14px;
+    letter-spacing: -0.3px;
+    line-height: 24px;
+    padding: 0;
+
+    label {
+      @extend %inter-500;
+      color: $color-eternity2;
+      display: flex;
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .modal--contact-us {
+    border: unset;
+    bottom: unset !important;
+    left: 50% !important;
+    margin-right: -50%;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    width: auto !important;
+
+    .ui-dialog-titlebar {
+      background: transparent;
+      border: unset;
+      position: absolute;
+      right: 0;
+      width: 50%;
+      z-index: 111;
+
+      button {
+        background-image: url("/themes/custom/elfbv/assets/media/icons/close.svg");
+        box-shadow: unset;
+        left: unset;
+        margin: 0;
+        right: 24px;
+        width: 20px;
+      }
+    }
+
+    #drupal-modal {
+      max-height: unset;
+    }
+  }
+
+  .form--contact-us--wrapper {
+    display: flex;
+    flex-direction: row !important;
+    max-height: 698px;
+    max-width: 1247px;
+
+    .image-placeholder {
+      flex: 0 0 50%;
+      height: auto;
+      overflow: hidden;
+
+      &:after {
+        height: 0;
+      }
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .image-placeholder--mobile {
+      display: none;
+    }
+
+    .image-placeholder--desktop {
+      display: flex;
+    }
+
+    @-moz-document url-prefix() {
+      .form-content {
+        scrollbar-color: $color-tenderness4 $color-eternity9;
+      }
+    }
+
+    .form-content {
+      justify-content: flex-start;
+      padding: 48px 72px 16px 72px;
+      position: relative;
+      row-gap: 20px;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 16px;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 8px;
+        width: 16px;
+        border: 1px solid $color-eternity8;
+        background-color: $color-eternity9;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        border: 4px solid transparent;
+        background-color: $color-tenderness4;
+        background-clip: content-box;
+      }
+
+      .help-text {
+        h2 {
+          bottom: unset;
+          font-size: 20px;
+          left: unset;
+          letter-spacing: -0.25px;
+          line-height: 28px;
+          margin-bottom: 12px;
+          position: relative;
+          text-align: unset;
+          top: unset;
+        }
+
+        span {
+          color: $color-eternity3;
+          margin-bottom: 12px;
+        }
+      }
+
+      .btn-primary {
+        margin-top: 12px;
+      }
+    }
+
+    .success-message--wrapper {
+      padding: 74px 16px 16px 16px;
+      row-gap: 32px;
+
+      h2 {
+        left: unset;
+        position: unset;
+        text-align: unset;
+        top: unset;
+      }
+    }
+  }
+
+  .user-logged-in .form--contact-us--wrapper .form-content .form-item-name label,
+  .user-logged-in .form--contact-us--wrapper .form-content .form-item-mail label {
+    color: $color-eternity3;
+  }
+}
+
+.select2-container--open.select-dropdown--contact-us {
+  margin-top: 8px;
+
+  .select2-dropdown.select2-dropdown--below .select2-results__option {
+    padding: 8px 32px 8px 12px !important;
+  }
+}

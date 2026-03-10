@@ -1,0 +1,20 @@
+{% set rows_array = [] %}
+
+{% for row in rows %}
+    {% set rows_array = rows_array|merge([row]) %}
+{% endfor %}
+
+{% set grouped_rows = get_polls_by_year(rows_array) %}
+
+{% for year, rows in grouped_rows %}
+  <div class="polls-page__grouped-year">
+    <h3 class="polls-page__grouped-year-title">
+      {{ year }}
+    </h3>
+    <div class="polls-page__polls-list">
+      {% for row in rows %}
+        <div class="polls-page__polls-list-item">{{ row.content }}</div>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}

@@ -1,0 +1,107 @@
+@use "../base/variables_drupal" as *;
+
+.sidebar-pinned-poll {
+  display: none;
+}
+
+.sidebar-pinned-poll__heading {
+  @extend %raleway-700;
+}
+
+.sidebar-pinned-poll__heading-row {
+  > a {
+    @extend %inter-500;
+  }
+}
+
+@media (min-width: $screen__l) {
+  .region-sidebar-second {
+    .sidebar-pinned-poll {
+      .paragraph--type--poll {
+        border: unset;
+        padding: 10px;
+      }
+    }
+  }
+
+  .sidebar-pinned-poll {
+    display: block;
+    padding: 24px;
+    background-color: $color-eternity10;
+    border-radius: 8px;
+    border: 1px solid $color-eternity8;
+
+    &:not(:first-child) {
+      margin-top: 24px;
+    }
+
+    .poll {
+      dl {
+        .choice-wrapper {
+          padding: 10px;
+        }
+
+        .choice-title.is-current-selection {
+          ~ .choice-icon {
+            min-width: 19px;
+          }
+        }
+      }
+
+      .percent--simple {
+        display: block;
+      }
+
+      .percent--full {
+        display: none;
+      }
+
+      .choice-wrapper {
+        .bar {
+          width: 100%;
+        }
+
+        .choice-result {
+          flex-grow: 1;
+          min-width: 100px;
+        }
+      }
+    }
+
+    .choice-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+
+      &.is-current-selection {
+        .choice-title {
+          max-width: calc(100% - 32px);
+        }
+      }
+    }
+  }
+
+  .sidebar-pinned-poll__heading {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.25px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: $color-eternity0;
+  }
+
+  .sidebar-pinned-poll__heading-row {
+    display: flex;
+    flex-direction: row;
+    column-gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+
+    > a {
+      color: $color-eternity4;
+      text-align: end;
+
+      &:hover {
+        color: $color-eternity3;
+      }
+    }
+  }
+}

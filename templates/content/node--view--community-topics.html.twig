@@ -1,0 +1,75 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * @see template_preprocess_node()
+ *
+ */
+#}
+
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] %}
+{{ attach_library('bootstrap5/node') }}
+{% set account_icon = path_images ~ '/icons/account.svg' %}
+<article{{ attributes.addClass(classes) }}>
+  vote_sum-{{ dump(vote_sum) }}
+
+  <div class="node__eyebrow">
+    <div class="node_eyebrow--author">
+      <a href="{{ topic_author.user_link }}">
+        {% if topic_author.user_image %}
+          {{ topic_author.user_image | style_image('large_avatar') }}
+        {% else %}
+          <img class="node_eyebrow--default-icon" src="{{ default_avatar }}" alt="Default avatar"/>
+        {% endif %}
+        <div class="node_eyebrow--default-icon">
+          {{ source(account_icon) }}
+        </div>
+
+        <p class="username">{{ topic_author.username }}</p>
+      </a>
+    </div>
+    <div class="user_connected">
+      {{ 'User connected'|t ~ ': ' ~ user_created }}
+    </div>
+    {% if topic_category.url %}
+      <div class="node_eyebrow--category">
+        <a href="{{ topic_category.url }}">
+          {{ render_reference_icon(topic_category.icon) }}
+          {{ topic_category.title }}
+        </a>
+      </div>
+    {% endif %}
+    {% if node_edit is not empty %}
+      <div class="node_eyebrow--edit">
+        <a class="edit-discussion" href="{{ node_edit }}">{{ source("/themes/custom/elfbv/assets/media/icons/pencil-gray.svg") }}</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="node__title">
+    <h2{{ title_attributes }}><a href="{{ url }}">{{ label }}</a></h2>
+  </div>
+  <div class="node__content">
+    {{ content.content| render | striptags | truncate(300, true, true) | raw }}
+  </div>
+  <div class="node__footer">
+    <div class="footer__left">
+      <div class="comment-count">{{ comment_count ~ ' ' ~ 'comments'|t}}</div>
+      {% if vote_sum > 0 %}
+        <div class="node-likes-dislikes">{{ content.like_and_dislike }}</div>
+      {% endif %}
+    </div>
+    <div class="footer__right">
+      <div class="node-view-count">
+        <span class="count-value">{{ view_total_count ? view_total_count : 0 }}</span>
+      </div>
+      <div class="comments-count">{{ topic_comments_count }}</div>
+    </div>
+  </div>
+
+</article>

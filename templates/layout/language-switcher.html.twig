@@ -1,0 +1,20 @@
+{% set currentUrl = path('<current>')|render %}
+{{ attach_library('core/drupal.ajax') }}
+{{ attach_library('core/drupal.dialog.ajax') }}
+<div class="dropdown">
+  <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    {{ defaultlang }}
+  </a>
+  <ul class="dropdown-menu">
+    {% for langcode, language in languages %}
+    <li>
+      <a
+        class="dropdown-item use-ajax"
+        href="{{ url('elfbv.language_switcher', {'langcode': langcode}, {'query':{'uri': currentUrl }}) }}"
+        hreflang="{{ langcode }}">
+        {{ language }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

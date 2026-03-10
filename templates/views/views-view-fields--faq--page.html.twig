@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display all the fields in a row.
+ *
+ * @see template_preprocess_views_view_fields()
+ */
+#}
+<div class="accordion accordion-flush" id="faq-accordion-{{ row.index }}">
+  <div class="accordion-item">
+    {% for type,field in fields -%}
+      {% if type == 'title' %}
+        <h4 class="accordion-header" id="flush-heading-{{ row.index }}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapse-{{ row.index }}" aria-expanded="false"
+                  aria-controls="flush-collapse-{{ row.index }}">
+            <div class="faq-question">{{ field.content }}</div>
+          </button>
+        </h4>
+      {% elseif type == 'answer' %}
+        <div id="flush-collapse-{{ row.index }}" class="accordion-collapse collapse"
+             aria-labelledby="flush-heading-{{ row.index }}" data-bs-parent="#faq-accordion-{{ row.index }}">
+          <div class="faq-answer">{{ field.content }}</div>
+        </div>
+      {% endif %}
+    {%- endfor %}
+  </div>
+</div>

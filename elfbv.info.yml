@@ -1,0 +1,28 @@
+name: 'Русские за рубежом'
+type: theme
+description: 'Русские за рубежом subtheme based on Bootstrap 5 theme.'
+core_version_requirement: '^9.5 || ^10'
+'base theme': bootstrap5
+libraries:
+  - elfbv/global-styling
+libraries-extend:
+  media_library/ui:
+    - claro/media_library.ui
+  media_library/view:
+    - claro/media_library.theme
+  media_library/widget:
+    - claro/media_library.theme
+regions:
+  nav_branding: 'Navigation branding region'
+  nav_main: 'Main navigation region'
+  nav_mobile: "Mobile navigation region"
+  referral_program: 'Referral Program region'
+  highlighted: Highlighted
+  content: 'Main content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: 'Footer'
+bootstrap5/global-styling:
+  css:
+    theme:
+      css/style.css: 'false'

@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * @see template_preprocess_node()
+ *
+ */
+#}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] %}
+{{ attach_library('bootstrap5/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <div class="node__eyebrow">
+    <div class="node_eyebrow--author">
+      <a href="{{ topic_author.user_link }}">
+        {{ topic_author.user_image }}
+        <p class="username">{{ topic_author.username }}</p>
+      </a>
+    </div>
+    <div class="node_eyebrow--date">
+      <p class="date">{{ topic_date }}</p>
+    </div>
+    <div class="node_eyebrow--category">
+      <a href="{{ topic_category.url }}">
+        {{ render_reference_icon(topic_category.icon) }}
+        {{ topic_category.title }}
+      </a>
+    </div>
+    {% if node_edit is not empty %}
+      <div class="node_eyebrow--edit">
+        <a class="edit-discussion" href="{{ node_edit }}">Edit</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="node__title">
+    <h2{{ title_attributes }}><a href="{{ url }}">{{ label }}</a></h2>
+  </div>
+  <div class="node__footer">
+    <div class="footer__left">
+      <div class="node-likes-dislikes">{{ content.like_and_dislike }}</div>
+    </div>
+    <div class="footer__right">
+      <div class="node-view-count">
+        <span class="count-value">{{ view_total_count ? view_total_count : 0 }}</span>
+      </div>
+      <div class="comments-count">{{ topic_comments_count }}</div>
+    </div>
+  </div>
+
+</article>

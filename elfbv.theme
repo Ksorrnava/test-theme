@@ -1,0 +1,405 @@
+<?php
+
+/**
+ * @file
+ * Русские за рубежом theme file.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
+use Drupal\elfbv\HookHandlers\BusinessNodePreprocessHandler;
+use Drupal\elfbv\HookHandlers\FaqNodePreprocessHandler;
+use Drupal\elfbv\HookHandlers\ForumCategoryViewPreprocessHandler;
+use Drupal\elfbv\HookHandlers\ForumNodePreprocessHandler;
+use Drupal\elfbv\SettingsManager;
+use Drupal\elfbv_user\Entity\User;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+use Drupal\user\Entity\User as DrupalUser;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function elfbv_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
+  $settings_manager = new SettingsManager(\Drupal::service('theme.manager'));
+  return $settings_manager->themeSettingsAlter($form, $form_state, $form_id);
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function elfbv_preprocess(&$variables, $hook) {
+  // Variable theme_path is used in PatternLab components.
+  if (!empty($variables['directory'])) {
+    $theme_public_path = base_path() . $variables['directory'];
+    $variables['path_theme'] = $theme_public_path;
+    $variables['path_images'] = $theme_public_path . '/assets/media';
+    $languages = [];
+    $language_manager = \Drupal::service('language_manager');
+    foreach ($language_manager->getLanguages() as $lang) {
+      $languages[$lang->getId()] = $lang->getName();
+    }
+    $variables['languages'] = $languages;
+    $variables['defaultlang'] = strtoupper($language_manager->getDefaultLanguage()->getId());
+
+    $user = User::load(\Drupal::currentUser()->id());
+    // Check if the user has a picture uploaded.
+    if ($user && !$user->user_picture->isEmpty()) {
+      $file_uri = $user->user_picture->entity->getFileUri();
+      $image_style = \Drupal::entityTypeManager()->getStorage('image_style')->load('thumbnail');
+      $variables['user_picture'] = $image_style->buildUrl($file_uri);
+    }
+    else {
+      $variables['user_picture'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function elfbv_preprocess_page(&$variables) {
+  $current_user = \Drupal::currentUser();
+  $user_timezone = $current_user->getTimeZone();
+  $current_time_utc = new DrupalDateTime('now', 'UTC');
+  if ($current_user->isAnonymous()) {
+    $current_time_user = $current_time_utc;
+  }
+  else {
+    $current_time_user = $current_time_utc
+      ->setTimezone(new \DateTimeZone($user_timezone));
+  }
+  $day_name  = mb_ucfirst(t($current_time_user->format('l')));
+  $day = $current_time_user->format('j');
+  $month = t($current_time_user->format('M'));
+  $variables['calendar'] = [
+    'day_name' => $day_name,
+    'day' => $day,
+    'month' => $month,
+  ];
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function elfbv_preprocess_node(&$variables) {
+  /** @var \Drupal\elfbv\HookHandlers\ForumNodePreprocessHandler $forum_node_handler */
+  $forum_node_handler = \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(ForumNodePreprocessHandler::class);
+  if ($forum_node_handler->isApplicable($variables)) {
+    $forum_node_handler->preprocess($variables);
+  }
+
+  /** @var \Drupal\elfbv\HookHandlers\BusinessNodePreprocessHandler $business_node_handler */
+  $business_node_handler = \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(BusinessNodePreprocessHandler::class);
+  if ($business_node_handler->isApplicable($variables)) {
+    $business_node_handler->preprocess($variables);
+  }
+
+  /** @var \Drupal\elfbv\HookHandlers\FaqNodePreprocessHandler $faq_node_handler */
+  $faq_node_handler = \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(FaqNodePreprocessHandler::class);
+  if ($faq_node_handler->isApplicable($variables)) {
+    $faq_node_handler->preprocess($variables);
+  }
+
+  elfbv_preprocess_node_taxonomy_translations($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function elfbv_preprocess_views_view(&$variables) {
+  /** @var \Drupal\elfbv\HookHandlers\ForumCategoryViewPreprocessHandler $forum_category_view_handler */
+  $forum_category_view_handler = \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(ForumCategoryViewPreprocessHandler::class);
+  if ($forum_category_view_handler->isApplicable($variables)) {
+    $forum_category_view_handler->preprocess($variables);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function elfbv_theme_suggestions_views_view_unformatted_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'views_view_unformatted__' . $variables['view']->id();
+  $suggestions = array_unique($suggestions);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field_multiple_value_form.
+ */
+function elfbv_preprocess_field_multiple_value_form(&$variables) {
+  if (isset($variables['element']['#paragraphs_widget']) && isset($variables['element']['add_more']) && isset($variables['table'])) {
+    $variables['table']['#attributes']['class'][] = 'paragraph-reference';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function elfbv_theme_suggestions_table_alter(array &$suggestions, array $variables, $hook) {
+  $table_id = $variables['attributes']['id'] ?? NULL;
+  if ($table_id) {
+    $id = str_replace("-", "_", $table_id);
+    $suggestions[] = $hook . '__' . $id;
+
+    if (isset($variables['attributes']['class'])) {
+      foreach ($variables['attributes']['class'] as $class) {
+        $class = str_replace("-", "_", $class);
+        $suggestions[] = $hook . '__' . $class;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element().
+ */
+function elfbv_preprocess_form_element(array &$variables) {
+  if (!isset($variables['label'])) {
+    return;
+  }
+
+  if (isset($variables['element']['#form_id'])) {
+    $variables['label']['#form_id'] = $variables['element']['#form_id'];
+  }
+  if (isset($variables['element']['#type'])) {
+    $variables['label']['#form_element_type'] = $variables['element']['#type'];
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function elfbv_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  elfbv_forms_attach_form_id($form, $form_id);
+}
+
+/**
+ * Attaches form id to all form elements.
+ *
+ * @param array $form
+ *   The form or form element which children should have form id attached.
+ * @param string $form_id
+ *   The form id attached to form elements.
+ */
+function elfbv_forms_attach_form_id(array &$form, $form_id) {
+  foreach (Element::children($form) as $child) {
+    if (!isset($form[$child]['#form_id'])) {
+      $form[$child]['#form_id'] = $form_id;
+    }
+    elfbv_forms_attach_form_id($form[$child], $form_id);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_form_element_label().
+ */
+function elfbv_theme_suggestions_form_element_label_alter(&$suggestions, $variables) {
+  $suggestions = [];
+  if (isset($variables['element']['#form_element_type'])) {
+    $suggestions[] = 'form_element_label__type__' . $variables['element']['#form_element_type'];
+  }
+  if (isset($variables['element']['#form_id'])) {
+    $suggestions[] = 'form_element_label__form-id__' . $variables['element']['#form_id'];
+  }
+  if (isset($variables['element']['#form_element_type']) && isset($variables['element']['#form_id'])) {
+    $suggestions[] = 'form_element_label__' . $variables['element']['#form_id'] . '__' . $variables['element']['#form_element_type'];
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function elfbv_preprocess_html(&$variables) {
+  // Add page dependent class.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $internal_path = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $class = str_replace("/", "-", substr($internal_path, 1));
+  $variables['attributes']['class'][] = $class;
+
+  // Add class for specific route.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if (in_array($route_name, ['forum', 'forum.page'])) {
+    $variables['attributes']['class'][] = 'forum-listing';
+  }
+
+  if (preg_match('/.*\.(edit|add)$/', $route_name)) {
+    $variables['attributes']['class'][] = 'edit-form-page';
+  }
+
+  if (preg_match('/.*\.(preview)$/', $route_name)) {
+    $variables['attributes']['class'][] = 'preview-form-page';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_node_alter().
+ */
+function elfbv_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  $node = $variables['elements']['#node'];
+  $routeMatch = \Drupal::routeMatch();
+
+  $bundle = $node->bundle();
+  $node_preview = $routeMatch->getParameter('node_preview');
+  if ($node_preview instanceof NodeInterface) {
+    $suggestions[] = 'node__' . $bundle . '__preview';
+
+    if ($view_mode_id = $routeMatch->getParameter('view_mode_id')) {
+      $suggestions[] = 'node__' . $bundle . '__' . $view_mode_id . '__preview';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function elfbv_preprocess_block(&$variables) {
+  // @todo Move to the build() method of UserFriendRequests.
+  if ($variables['plugin_id'] === 'user_friend_requests') {
+    $route = 'elfbv_user.ajax_callback';
+    $user = DrupalUser::load(\Drupal::currentUser()->id());
+    $friendship_service = \Drupal::service('elfbv_user.friendship_service');
+
+    $variables['#attached']['drupalSettings']['userProfileBlock'] = [
+      'addFriend' => $friendship_service->getUrlWithToken($route, 'add_friend', $user),
+      'removeFromFriends' => $friendship_service->getUrlWithToken($route, 'remove_from_friends', $user),
+      'acceptFriendshipRequest' => $friendship_service->getUrlWithToken($route, 'accept_friendship_request', $user),
+      'rejectFriendshipRequest' => $friendship_service->getUrlWithToken($route, 'reject_friendship_request', $user),
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function elfbv_preprocess_node_taxonomy_translations(&$variables) {
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+  if (isset($variables['topic_category']['title']) && isset($variables['topic_category']['term_id'])) {
+    $term_id = $variables['topic_category']['term_id'];
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($term_id);
+    if ($term && $term->hasTranslation($language)) {
+      $translated_term = $term->getTranslation($language);
+      $variables['topic_category']['title'] = $translated_term->getName();
+    }
+  }
+
+  if (isset($variables['category']['title']) && isset($variables['category']['term_id'])) {
+    $term_id = $variables['category']['term_id'];
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($term_id);
+    if ($term && $term->hasTranslation($language)) {
+      $translated_term = $term->getTranslation($language);
+      $variables['category']['title'] = $translated_term->getName();
+    }
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function elfbv_page_attachments_alter(array &$attachments) {
+  $attachments['#attached']['html_head'][] = [
+    [
+      '#tag' => 'script',
+      '#attributes' => [
+        'type' => 'text/javascript',
+      ],
+      '#value' => Markup::create("(function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104436592', 'ym');
+
+    ym(104436592, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:\"dataLayer\", accurateTrackBounce:true, trackLinks:true});"),
+    ],
+    'yandex_metrika',
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_region_alter().
+ */
+function elfbv_theme_suggestions_region_alter(array &$suggestions, array &$variables) {
+ if (in_array('region__footer', $suggestions)) {
+    $suggestions[] = 'region__footer__elfbv';
+    $elfbv_forum_conf = \Drupal::service('config.factory')->get('elfbv_forum.settings');
+    // $variables['copyright'] = $elfbv_forum_conf->get('copyright')['value'];
+    $variables['copyright'] = '© Emigram ' . date('Y');
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function elfbv_theme_suggestions_page_alter(array &$suggestions, array &$variables) {
+  /** @var \Drupal\elfbv_leaf\Entity\Leaf $leaf */
+  $leaf = \Drupal::routeMatch()->getParameter('leaf');
+  if (is_object($leaf)) {
+    $suggestions[] = 'page__forum';
+    $image = $leaf->get('main_image')->getValue();
+    $image = reset($image);
+    $file = File::load($image['target_id']);
+    if ($file) {
+      $uri = $file->getFileUri();
+      $style = \Drupal::entityTypeManager()
+        ->getStorage('image_style')->load('thumbnail_48x48');
+      $url = $style->buildUrl($uri);
+    }
+    else {
+      $url = FALSE;
+    }
+    $query = \Drupal::entityQuery('user')
+      ->condition('user_clg', $leaf->id())
+      ->accessCheck(FALSE)
+      ->count();
+    $user_clg = $query->execute();
+    $variables['leaf'] = [
+      'id' => $leaf->id(),
+      'title' => $leaf->label(),
+      'url' => $url,
+      'users' => $user_clg,
+    ];
+    $variables['#attached']['drupalSettings']['front_news'] = [
+      'views_block_url' => Url::fromRoute('elfbv_forum.get_news_views_block')->toString(),
+    ];
+    $variables['news_url'] = $leaf->toUrl()->toString() . '/news';
+  }
+  else {
+    $variables['leaf'] = FALSE;
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_block_alter().
+ */
+function elfbv_theme_suggestions_block_alter(array &$suggestions, array &$variables) {
+  if (in_array('block__add_leaf_to_favorite', $suggestions)) {
+    $leaf = \Drupal::routeMatch()->getParameter('leaf');
+    $current_user = \Drupal::currentUser();
+    if (is_object($leaf) != 0 && $current_user->isAuthenticated()) {
+      $favorite_field = 'user_favorite_clg';
+      $user = User::load($current_user->id());
+      $user_favorite_clg = $user->get($favorite_field);
+      $user_leaf_ids = array_map( function($leaf_id) {
+        return $leaf_id['target_id'];
+      }, $user_favorite_clg->getValue());
+      if ($user->hasField($favorite_field)) {
+        if (in_array($leaf->id(), $user_leaf_ids)) {
+          $variables['to_favorite_enable'] = FALSE;
+          return;
+        }
+      }
+    }
+    $variables['to_favorite_enable'] = TRUE;
+  }
+}

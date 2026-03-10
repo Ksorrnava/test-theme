@@ -1,0 +1,33 @@
+global-styling:
+  css:
+    theme:
+      assets/css/style.css: { }
+  js:
+    assets/js/scripts.js: { }
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupalSettings
+    - select2/select2
+
+
+slick-slider-library:
+  js:
+    assets/js/slick.min.js: { }
+
+slick-slider-init:
+  js:
+    assets/js/slick_sliders.js: { }
+  dependencies:
+    - elfbv/slick-slider-library
+
+visually-impaired:
+  js:
+    assets/js/visually_impaired.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/once
+    - core/drupal
+    - core/jquery.cookie
+    - core/js-cookie

@@ -1,0 +1,139 @@
+@use "../base/variables_drupal" as *;
+
+.categories {
+  align-items: center;
+  height: 100%;
+  padding: 0 0 17px 0;
+  position: relative;
+
+  &--mobile {
+    display: flex;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &__description {
+    @extend %inter-400;
+    color: $color-eternity3;
+    font-size: 14px;
+    letter-spacing: -0.3px;
+    line-height: 24px;
+    margin: 0 8px 0 0;
+  }
+
+  &__title {
+    @extend %inter-500;
+    color: $color-eternity0;
+    font-size: 15px;
+    letter-spacing: -0.4px;
+    line-height: 26px;
+  }
+
+  &__dropdown {
+    display: none;
+    left: 16px;
+    max-height: 542px;
+    overflow: scroll;
+    position: absolute;
+    right: 16px;
+    top: 33px;
+    width: auto;
+    z-index: 24;
+  }
+
+  &__toggle {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 0 4px;
+  }
+
+  &__icon-after {
+  }
+
+  .categories__visibility {
+    display: none;
+
+    &-more,
+    &-less {
+      @extend %inter-500;
+    }
+  }
+
+  .main-links {
+    .dropdown__item:last-child {
+      border-radius: unset;
+    }
+  }
+
+  .categories-links--item {
+    .categories-links--item-children {
+      display: none;
+    }
+
+    &-wrapper {
+      align-items: center;
+      display: flex;
+      flex: 0 0 100%;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &.show-children {
+      align-items: flex-start;
+      flex-direction: column;
+      height: auto;
+      padding: 10px 10px 0 0;
+
+      .categories-links--item-wrapper {
+        padding: 0 0 10px 12px;
+      }
+
+      & > .categories-links--item-children {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .categories-links--item-child {
+          border: 1px solid $color-eternity8;
+          border-left: unset;
+          border-right: unset;
+
+          &:first-child {
+            border-radius: unset;
+          }
+
+          &:last-child {
+            border-bottom: unset;
+          }
+
+          .dropdown__item-link {
+            width: 100%;
+
+            .dropdown__title {
+              color: $color-eternity3;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .categories-links {
+    .dropdown__item:nth-child(2) {
+      border-top: unset;
+    }
+  }
+
+  .dropdown__item-type {
+    border-bottom: unset;
+    border-radius: unset;
+    border-top: unset;
+  }
+}
+
+@media (min-width: $screen__l) {
+  .categories--mobile {
+    display: none;
+  }
+}

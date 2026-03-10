@@ -1,0 +1,98 @@
+@use "../base/variables_drupal" as *;
+
+.button {
+  appearance: none;
+  @extend %raleway-700;
+  font-size: 15px;
+  line-height: 1.733;
+  padding: 4px 12px;
+  border-radius: 8px;
+  width: max-content;
+  transition-property: background-color, color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+
+  &.button--accept {
+    border: 1px solid $color-existence9;
+    color: $color-existence5;
+    background-color: $color-existence9;
+
+    &:hover {
+      color: $color-existence2;
+      background-color: $color-existence8;
+      border-color: $color-existence8;
+    }
+  }
+
+  &.button--primary {
+    color: $color-eternity10;
+    border: 1px solid $color-tenderness0;
+    background-color: $color-tenderness0;
+
+    &:hover {
+      border: 1px solid $color-tenderness5;
+      background-color: $color-tenderness5;
+    }
+  }
+
+  &.button--primary-outline {
+    color: $color-tenderness0;
+    border: 1px solid $color-tenderness8;
+    background-color: $color-eternity10;
+
+    &:hover {
+      border: 1px solid $color-tenderness8;
+      background-color: 1px solid $color-tenderness8;
+    }
+  }
+
+  &.button--secondary {
+    border: 1px solid $color-energy9;
+    color: $color-energy0;
+    background-color: $color-energy9;
+
+    &:hover {
+      background-color: $color-energy8;
+      border: 1px solid $color-energy8;
+    }
+  }
+
+  &.button--third {
+    color: $color-tenderness0;
+    background-color: $color-tenderness9;
+
+    &:hover {
+      background-color: $color-tenderness8;
+    }
+
+    &[disabled] {
+      color: $color-tenderness5;
+      background-color: $color-tenderness9;
+      border-color: $color-tenderness9;
+    }
+  }
+
+  &.button--outline {
+    border: 1px solid $color-energy8;
+    color: $color-energy0;
+    background-color: $color-eternity10;
+
+    &:hover {
+      background-color: $color-energy8;
+    }
+  }
+
+  &.button--fourth {
+    border: 1px solid $color-energy0;
+    color: $color-eternity10;
+    background-color: $color-energy0;
+
+    &:hover {
+      background-color: $color-energy3;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+}

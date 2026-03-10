@@ -1,0 +1,214 @@
+@use "../base/variables_drupal" as *;
+
+body[class*="-faq"] {
+  .block-system-main-block {
+    background: $color-eternity9;
+  }
+
+  .view-faq {
+    .view-content {
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+
+      .views-row {
+        padding: 0 !important;
+      }
+
+      h3 {
+        @extend %raleway-700;
+        display: none;
+      }
+
+      .accordion {
+        &-item {
+          display: flex;
+          flex-direction: column;
+          padding: 14px 16px;
+          row-gap: 12px;
+
+          .faq-question {
+            @extend %inter-500;
+            align-items: center;
+            color: $color-eternity0;
+            display: flex;
+            font-size: 15px;
+            letter-spacing: -0.4px;
+            line-height: 1.733;
+          }
+
+          .faq-answer {
+            @extend %inter-400;
+            color: $color-eternity2;
+            font-size: 14px;
+            letter-spacing: -0.3px;
+            line-height: 1.714;
+          }
+        }
+
+        &-button {
+          padding: 0;
+
+          &:after {
+            background-image: url("/themes/custom/elfbv/assets/media/icons/arrow-down.svg");
+            background-position: 50%;
+            background-size: unset;
+            margin-bottom: auto;
+          }
+
+          &:not(.collapsed) {
+            background: unset;
+            border-color: unset;
+            box-shadow: unset;
+          }
+
+          &:hover,
+          &:focus,
+          &:active {
+            background: unset;
+            border-color: unset;
+            box-shadow: unset;
+          }
+        }
+      }
+    }
+  }
+}
+
+.faq__category-heading {
+  @extend %raleway-700;
+  font-size: 18px;
+  line-height: 1.33;
+  color: $color-eternity0;
+  letter-spacing: -0.25px;
+  padding-right: 16px;
+  padding-left: 16px;
+
+  &:not(:first-of-type) {
+    margin-top: 12px;
+  }
+}
+
+.faq-categories-block {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  row-gap: 2px;
+  background-color: $color-eternity10;
+  border-bottom: 1px solid $color-eternity8;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-bottom: 24px;
+
+  .categories-links--item,
+  a {
+    width: 100%;
+  }
+
+  a {
+    display: inline-flex;
+    @extend %inter-500;
+    font-size: 15px;
+    line-height: 1.733;
+    letter-spacing: -0.4px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    color: $color-eternity4;
+  }
+}
+
+@media (max-width: calc(991px)) {
+  body[class*="-faq"] {
+    .container--main {
+      padding-top: 0 !important;
+    }
+
+    .region-sidebar-first {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    .header {
+      box-shadow: unset;
+      border-bottom: 1px solid $color-eternity8;
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  body[class*="-faq"] {
+    .region-sidebar-first {
+      position: sticky;
+      top: calc(76px + var(--fixed-elements-top-space, 0px));
+    }
+
+    .view-faq {
+      column-gap: 24px;
+      display: flex;
+
+      .view-content {
+        flex: 100%;
+
+        h3 {
+          color: $color-eternity0;
+          display: block;
+          font-feature-settings: 'pnum' on, 'lnum' on;
+          font-size: 18px;
+          letter-spacing: -0.25px;
+          line-height: 1.33;
+          margin: 24px 0 4px 16px;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+
+        .accordion-item {
+          border-radius: 8px;
+          padding: 14px 20px;
+
+          &:hover,
+          &:focus,
+          &:active {
+            border-color: $color-eternity4;
+          }
+        }
+      }
+    }
+  }
+
+  .faq-categories-block {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    row-gap: 2px;
+    background-color: $color-eternity10;
+    border: 1px solid $color-eternity8;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 24px;
+
+    .categories-links--item,
+    a {
+      width: 100%;
+    }
+
+    a {
+      transition-duration: 0.3s;
+      transition-property: background-color, color;
+      transition-timing-function: ease;
+
+      &:hover {
+        color: $color-eternity2;
+        background-color: $color-eternity9;
+      }
+
+      &.active,
+      &:active {
+        color: $color-energy5;
+        background-color: $color-energy10;
+      }
+    }
+  }
+}

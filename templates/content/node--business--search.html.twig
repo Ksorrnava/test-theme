@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * @see template_preprocess_node()
+ *
+ */
+#}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] %}
+{{ attach_library('bootstrap5/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <div class="node__title">
+    <h2{{ title_attributes }}><a href="{{ url }}">{{ label }}</a></h2>
+  </div>
+  <div class="node__content">
+    {{ content.body }}
+    {% if content.search_api_excerpt %}
+      <div class="found-part">
+        {{ content.search_api_excerpt }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="node__footer">
+    <div class="footer__left">
+      <div class="node-footer--author">
+        <a href="{{ author.user_link }}">
+          {{ author.user_image }}
+          <p class="username">{{ author.username }}</p>
+        </a>
+      </div>
+      <div class="node-footer--date">
+        <p class="date">{{ date }}</p>
+      </div>
+      <div class="node-footer--node-type">
+        <p class="type">{{ node_type }}</p>
+      </div>
+      <div class="node-footer--category">
+        <a href="{{ category.url }}">
+          {{ render_reference_icon(category.icon) }}
+          {{ category.title }}
+        </a>
+      </div>
+    </div>
+    <div class="footer__right">
+      <div class="node-footer--view-count">
+        <span class="count-value">{{ view_total_count ? view_total_count : 0 }}</span>
+      </div>
+      <div class="node-footer--comments-count">{{ comments_count }}</div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,91 @@
+@use "../base/variables_drupal" as *;
+
+.block--ad-block {
+  display: none;
+
+  .adblock {
+    border-radius: 8px;
+    overflow: hidden;
+
+    + .adblock {
+      margin-top: 16px;
+    }
+
+    img {
+      border-radius: 8px;
+    }
+  }
+}
+
+.adblock__filled {
+  .block--ad-block {
+    display: block;
+  }
+}
+
+.view {
+  .view-content {
+    .views-row {
+      &.adblock__empty,
+      &.adblock__filled {
+        background-color: $color-eternity6 !important;
+        border: unset !important;
+      }
+
+      &.adblock__filled {
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 0 !important;
+      }
+
+      &.adblock__empty--center-block {
+        padding: 97px 16px !important;
+      }
+    }
+  }
+}
+
+.adblock__empty {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  @extend %inter-600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: $color-eternity10;
+  background-color: $color-eternity6;
+  letter-spacing: -0.6px;
+}
+
+.adblock__empty--side-block {
+  padding: 51px 16px;
+}
+
+.adblock__empty--center-block {
+  font-size: 24px;
+  line-height: 1.133;
+}
+
+.adblock__empty-state {
+
+
+  &:not(:first-of-type) {
+    margin-top: 16px;
+  }
+}
+.adblock__filled {
+  img {
+    margin-right: auto;
+    margin-left: auto;
+    max-height: 222px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+}
+
+
+@media (min-width: $screen__l) {
+  .block--ad-block {
+    display: block;
+  }
+}

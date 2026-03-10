@@ -1,0 +1,305 @@
+
+.img-grayscale {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.top-language-switcher .dropdown-toggle{
+  color: black;
+}
+.visually-impaired-icons{
+  background-color: white;
+  display: flow-root;
+  text-align: center;
+  .access {
+    color: black;
+    font-size: 16px;
+    max-width: 1000px;
+    dl {
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+
+    .a-fontsize {
+      /*display: inline;
+      float: left;
+      margin-left: 23px;*/
+      padding-top: 15px;
+    }
+
+    .a-fontsize dt,
+    .a-fontsize dd,
+    .a-colors dt,
+    .a-colors dd,
+    .a-images dt,
+    .a-images dd,
+    .a-kerning dt,
+    .a-kerning dd {
+      float: left;
+      margin: 0;
+      font-weight: normal;
+    }
+
+    .a-fontsize a {
+      position: relative;
+      top: -5px;
+      display: inline;
+      float: left;
+      height: 31px;
+      margin-left: 5px;
+      text-decoration: none;
+      background-image: url(../../../elfbv/assets/media/visually-impaired/fontsize.png);
+    }
+
+
+    .access a {
+      outline: none;
+    }
+    .a-fontsize-normal {
+      width: 26px;
+      background-position: -20px 0;
+    }
+
+    .a-fontsize-small {
+      width: 20px;
+      height: 31px;
+    }
+
+    .a-fontsize-big {
+      width: 26px;
+      background-position: -46px 0;
+    }
+
+    dl {
+      position: relative;
+    }
+
+    .a-colors {
+      /*display: inline;
+      float: left;
+      width: 215px;
+      margin-left: 13px;*/
+      padding-top: 15px;
+    }
+
+    .a-colors a {
+      position: relative;
+      top: -5px;
+      display: inline;
+      float: left;
+      width: 26px;
+      height: 31px;
+      margin-left: 5px;
+      text-decoration: none;
+      background-image: url(../../../elfbv/assets/media/visually-impaired/colors.png);
+    }
+
+    .a-color2 {
+      background-position: -26px 0;
+    }
+
+    .a-color3 {
+      background-position: 100% 0;
+    }
+
+    .a-color1:hover,
+    .color1 .a-color1 {
+      background-position: 0 -31px;
+    }
+
+    .a-color2:hover,
+    .color2 .a-color2 {
+      background-position: -26px -31px;
+    }
+
+    .a-color3:hover,
+    .color3 .a-color3 {
+      background-position: 100% -31px;
+    }
+
+    .a-images {
+      /*display: inline;
+      float: left;
+      width: 215px;*/
+      padding-top: 15px;
+    }
+
+    .a-images a {
+      position: relative;
+      top: -5px;
+      display: inline;
+      float: left;
+      width: 26px;
+      height: 31px;
+      margin-left: 5px;
+      text-decoration: none;
+      background-image: url(../../../elfbv/assets/media/visually-impaired/images.png);
+    }
+
+    .a-imggray {
+      background-position: -26px 0;
+    }
+
+    .a-imgnone {
+      background-position: 100% 0;
+    }
+
+    .a-imgcolor:hover,
+    .imgcolor .a-imgcolor {
+      background-position: 0 -31px;
+    }
+
+    .a-imggray:hover,
+    .imggray .a-imggray {
+      background-position: -26px -31px;
+    }
+
+    .a-imgnone:hover,
+    .imgnone .a-imgnone {
+      background-position: 100% -31px;
+    }
+
+    .img-grayscale {
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      filter: grayscale(100%);
+      filter: gray;
+    }
+
+    .a-kerning {
+      /*display: inline;
+      float: left;
+      width: 215px;
+      padding-left: 10px;*/
+      padding-top: 15px;
+    }
+
+    .a-kerning a {
+      position: relative;
+      top: -5px;
+      display: inline;
+      float: left;
+      width: 26px;
+      height: 31px;
+      margin-left: 5px;
+      text-decoration: none;
+      background-image: url(../../../elfbv/assets/media/visually-impaired/kerning.png);
+    }
+
+    .a-kernmid {
+      background-position: -26px 0;
+    }
+
+    .a-kernbig {
+      background-position: 100% 0;
+    }
+
+    .a-kernstd:hover,
+    .kernstd .a-kernstd {
+      background-position: 0 -31px;
+    }
+
+    .a-kernmid:hover,
+    .kernmid .a-kernmid {
+      background-position: -26px -31px;
+    }
+
+    .a-kernbig:hover,
+    .kernbig .a-kernbig {
+      background-position: 100% -31px;
+    }
+
+    #block-special-theme-branding {
+      margin-bottom: 50px;
+      font-size: 300%;
+    }
+
+    #block-visually-impaired-theme-content img {
+      max-width: 100%;
+    }
+
+    #main-container {
+      display: table;
+    }
+
+    #sidebar-first,
+    #main,
+    #sidebar-second {
+      display: table-cell;
+      vertical-align: top;
+    }
+
+    .form-search {
+      float: left;
+    }
+
+    #block-visually-impaired-theme-main-menu,
+    #block-visually-impaired-theme-local-tasks {
+      padding-bottom: 30px;
+    }
+
+    #block-visually-impaired-theme-main-menu ul,
+    #block-visually-impaired-theme-local-tasks ul {
+      list-style-type: none;
+    }
+
+    #block-visually-impaired-theme-main-menu ul li,
+    #block-visually-impaired-theme-local-tasks ul li {
+      float: left;
+      padding-right: 30px;
+    }
+  }
+}
+
+a.a-fontsize-normal:hover,
+.fontsize-normal a.a-fontsize-normal {
+  background-position: -20px -31px !important;
+}
+a.a-fontsize-small:hover,
+.fontsize-small a.a-fontsize-small {
+  background-position: 0 -31px !important;
+}
+a.a-fontsize-big:hover,
+.fontsize-big a.a-fontsize-big {
+  background-position: -46px -31px !important;
+}
+.a-color1:hover,
+.color1 .a-color1 {
+  background-position: 0 -31px !important;
+}
+.a-color2:hover,
+.color2 .a-color2 {
+  background-position: -26px -31px !important;
+}
+.a-color3:hover,
+.color3 .a-color3 {
+  background-position: 100% -31px !important;
+}
+.a-imgcolor:hover,
+.imgcolor .a-imgcolor {
+  background-position: 0 -31px !important;
+}
+.a-imggray:hover,
+.imggray .a-imggray {
+  background-position: -26px -31px !important;
+}
+.a-imgnone:hover,
+.imgnone .a-imgnone {
+  background-position: 100% -31px !important;
+}
+.a-kernstd:hover,
+.kernstd .a-kernstd {
+  background-position: 0 -31px !important;
+}
+.a-kernmid:hover,
+.kernmid .a-kernmid {
+  background-position: -26px -31px !important;
+}
+.a-kernbig:hover,
+.kernbig .a-kernbig {
+  background-position: 100% -31px !important;
+}

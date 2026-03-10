@@ -1,0 +1,11 @@
+.contextual:has(+ .favorite-cultural-group) {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .region--nav-main {
+    .block-default-clg-block {
+      display: none;
+    }
+  }
+}

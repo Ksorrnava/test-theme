@@ -1,0 +1,13 @@
+.block-secondary-footer-block {
+  margin-top: 24px;
+
+  .main-page-footer__wrapper {
+    align-items: flex-start;
+  }
+
+  .main-page-footer__links-wrapper {
+    .navbar-nav {
+      justify-content: flex-start;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@use "../base/variables_drupal" as *;
+
+#right-column{
+  .view-display-id-block_right_column_countries{
+    .view-content{
+      flex-direction: row;
+      margin-bottom: 18px;
+      background: $bg-base-03;
+      border-radius: 6px;
+      .news-country{
+        margin: 4px auto;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+      .news-country:not(.news-country-clicked){
+        color: $text-tertiary;
+      }
+      .news-country.news-country-clicked{
+        border-radius: 4px;
+        padding: 4px 10px;
+        color: $text-primary;
+        background: $bg-base-01;
+        border: 0.5px solid $stroke-base-00;
+      }
+
+    }
+  }
+  .view-display-id-block_right_column_news{
+    .news-column--news{
+      a, a:hover {
+        color: $text-primary;
+      }
+      .text-tertiary {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.news-header {
+  display: flex;
+  margin-bottom: 16px;
+  h5{
+    width: fit-content;
+  }
+  a {
+    width: 100%;
+    text-align: right;
+  }
+}

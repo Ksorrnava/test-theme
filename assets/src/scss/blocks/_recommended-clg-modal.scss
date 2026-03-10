@@ -1,0 +1,113 @@
+@use "../base/variables_drupal" as *;
+
+.recommended-clg-modal {
+  max-width: 494px;
+}
+
+.recommended-clg-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 32px;
+  padding: 40px 15px;
+}
+
+.recommended-clg-block__heading {
+  @extend %raleway-700;
+  color: $color-eternity0;
+  font-size: 18px;
+  line-height: 1.333;
+  letter-spacing: -0.25px;
+  text-align: center;
+}
+
+.recommended-clg-block__heading-row {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.recommended-clg-block__info-text {
+  @extend %inter-400;
+  font-size: 15px;
+  line-height: 1.733;
+  letter-spacing: -0.4px;
+  color: $color-eternity3;
+  text-align: center;
+}
+
+.recommended-clg-block__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  border-radius: 8px;
+  border: 1px solid $color-eternity8;
+  padding: 15px;
+}
+
+.recommended-clg-block__image {
+  width: 100%;
+}
+
+.recommended-clg-block__group-name {
+    @extend %raleway-700;
+    color: $color-eternity0;
+    font-size: 18px;
+    line-height: 1.333;
+    letter-spacing: -0.25px;
+    text-align: center;
+}
+
+.recommended-clg-block-link {
+  display: flex;
+  width: 100%;
+
+  &.button {
+    &.button--primary {
+      margin: 0 !important;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      &:hover {
+        color: $color-eternity10;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .recommended-clg-modal {
+    width: calc(100% - 32px) !important;
+    top: 50% !important;
+    bottom: unset !important;
+    transform: translateY(-50%);
+    max-height: calc(100% - 40px);
+
+    &.ui-dialog {
+      .ui-dialog-titlebar {
+        position: absolute;
+        background-color: transparent;
+        border-bottom: unset;
+        z-index: 101;
+        left: unset;
+        right: 24px;
+
+        button {
+
+          background-image: url("/themes/custom/elfbv/assets/media/icons/close.svg");
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .recommended-clg-block {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+
+  .recommended-clg-block__heading {
+    font-size: 24px;
+  }
+}

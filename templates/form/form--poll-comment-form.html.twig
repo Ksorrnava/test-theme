@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see Drupal\user\Form\UserLoginForm
+ */
+#}
+{% set base_class = 'form--forum-comment' %}
+<div class="{{ base_class }}">
+    <div class="{{ base_class }}--wrapper">
+        <div class="form-content">
+            <div class="user-picture">
+                {{ element.user_picture }}
+            </div>
+            {{ element.comment_body }}
+            {{ element.actions }}
+        </div>
+        <div class="form-notifications">
+            {{ element.comment_notify_settings }}
+        </div>
+    </div>
+</div>
+{{ element.form_build_id }}
+{{ element.form_token }}
+{{ element.form_id }}

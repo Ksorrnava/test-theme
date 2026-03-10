@@ -1,0 +1,26 @@
+@use "../base/variables_drupal" as *;
+
+#block-elfbv-findtheculturalgroupblock {
+  display: none;
+}
+
+.find-cultural-group__link {
+  p {
+    border-radius: 8px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    @extend %raleway-700;
+    font-size: 15px;
+    line-height: 1.733;
+    background-color: $color-energy0;
+    color: $color-eternity10;
+  }
+}
+
+@media (min-width: $screen__l) {
+  #block-elfbv-findtheculturalgroupblock {
+    display: block;
+    margin-bottom: 24px;
+  }
+}

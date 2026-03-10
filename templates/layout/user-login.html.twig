@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present an auth block.
+ *
+ * @see \Drupal\elfbv_global\Plugin\Block\ForumAuthBlock
+ */
+#}
+{{ attach_library('core/drupal.dialog.ajax') }}
+
+{% set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+] %}
+{% set account_icon = path_images ~ '/icons/account.svg' %}
+{% set logout_icon = path_images ~ '/icons/logout.svg' %}
+<div{{ attributes.addClass(classes) }}>
+  {% if logged_in  %}
+    <a class="header__account" href="{{ content['#user_link'] }}">
+      <div class="header__account-icon">
+        <a class="header__account" href="{{ url('user.page') }}">
+        {% if user_picture %}
+          <img width="44" height="44" src="{{ user_picture }}" alt="{{ 'Account image'|t }}">
+        {% else %}
+          <img width="44" height="44" src="{{ account_icon }}" alt={{ 'Account image'|t }}">
+          {#{{ source(account_icon) }}#}
+        {% endif %}
+        </a>
+      </div>
+    </a>
+
+  {% else %}
+      <div class="header__account-icon">
+        <a href="{{ url('emigram_auth.login') }}">
+          <img width="44" height="44" src="{{ account_icon }}" alt="{{ 'Account image'|t }}">
+        </a>
+      </div>
+
+  {% endif %}
+</div>

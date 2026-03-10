@@ -1,0 +1,69 @@
+@use "../base/variables_drupal" as *;
+
+.user-profile-publications {
+  .user-profile-page__heading-row {
+    padding-left: 0;
+    column-gap: 8px;
+  }
+}
+
+.user-profile__publications-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.user-profile__publication {
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid $color-eternity8;
+
+  .node__eyebrow {
+    padding-top: 0;
+    padding-bottom: 12px;
+  }
+
+  .node_eyebrow--edit {
+    .edit-discussion {
+      padding: 6px;
+      transition-timing-function: ease;
+      transition-duration: 0.3s;
+      transition-property: background-color;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: $color-eternity9;
+      }
+    }
+  }
+
+  .node__title {
+    a, h2 {
+      @extend %raleway-700;
+      color: $color-eternity0;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      font-size: 20px;
+      letter-spacing: -0.25px;
+      line-height: 1.4;
+    }
+  }
+
+  .node__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    word-break: break-word;
+  }
+
+  .node__footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid $color-eternity8;
+  }
+
+  .field--name-image-preview {
+    margin-top: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}

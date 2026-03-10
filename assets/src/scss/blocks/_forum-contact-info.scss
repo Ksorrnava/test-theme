@@ -1,0 +1,140 @@
+@use "../base/variables_drupal" as *;
+
+.block-business-info-block {
+  border-top: 1px solid $color-eternity8;
+  border-bottom: 1px solid $color-eternity8;
+  background-color: $color-eternity10;
+  border-radius: 8px;
+  padding: 24px;
+
+  article {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  h3 {
+    @extend %raleway-700;
+    font-size: 18px;
+    line-height: 1.333;
+    color: $color-eternity0;
+    margin-bottom: 16px;
+  }
+
+  .social-link--wrapper {
+    & + .social-link--wrapper,
+    & + .social-link-field {
+      margin-top: 14px;
+    }
+
+    > a {
+      position: relative;
+      display: inline-flex;
+      padding-left: 24px;
+    }
+
+    .label {
+      @extend %inter-600;
+      color: $color-eternity0;
+      font-size: 15px;
+      line-height: 1.733;
+      letter-spacing: -0.4px;
+      margin-right: 5px;
+    }
+
+    .username {
+      @extend %inter-400;
+      font-size: 15px;
+      color: $color-eternity2;
+      line-height: 1.733;
+      letter-spacing: -0.4px;
+    }
+
+    .instagram,
+    .linkedin,
+    .facebook,
+    .twitter,
+    .phone,
+    .email,
+    .telegram,
+    .viber,
+    .whatsapp {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        mask-repeat: no-repeat;
+        mask-position: 50% 50%;
+        background-color: $color-eternity4;
+      }
+    }
+
+    .phone {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/account.svg");
+      }
+    }
+
+    .email {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/envelope.svg");
+      }
+    }
+
+    .instagram {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/instagram.svg");
+      }
+    }
+
+    .linkedin {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/linkedin.svg");
+      }
+    }
+
+    .facebook {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/facebook.svg");
+      }
+    }
+
+    .twitter {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/twitter.svg");
+      }
+    }
+
+    .telegram {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/telegram.svg");
+      }
+    }
+
+    .viber {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/viber.svg");
+      }
+    }
+    .whatsapp {
+      &:before {
+        mask-image: url("/themes/custom/elfbv/assets/media/icons/whatsapp.svg");
+      }
+    }
+  }
+
+  .address--wrapper {
+    margin-top: 14px;
+    @extend %inter-400;
+    color: $color-eternity0;
+    font-size: 15px;
+    line-height: 1.733;
+    letter-spacing: -0.25px;
+  }
+}

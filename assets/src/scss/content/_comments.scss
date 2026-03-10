@@ -1,0 +1,376 @@
+@use "../base/variables_drupal" as *;
+
+.comment--wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .comment--header {
+    display: flex;
+    justify-content: space-between;
+
+    .title {
+      @extend %raleway-700;
+      color: $color-eternity0;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      font-size: 18px;
+      letter-spacing: -0.25px;
+      line-height: 24px;
+
+      .comment-counter {
+        @extend %inter-600;
+        color: $color-eternity4;
+        font-size: 15px;
+        letter-spacing: -0.4px;
+        line-height: 26px;
+      }
+    }
+
+    .comment--sort-form-wrapper .form-item-sort {
+      display: flex;
+      margin: 0;
+
+      label {
+        color: #6f6f6f;
+        font-size: 14px;
+        letter-spacing: -.3px;
+        line-height: 24px;
+        white-space: nowrap;
+      }
+      select {
+        font-size: 14px;
+        line-height: 24px;
+        padding: 0 30px 0 10px;
+        border: unset;
+      }
+    }
+  }
+
+  .comment--form-wrapper,
+  .form--forum-comment,
+  .form--business-comment {
+    margin: 16px 0;
+
+    .form--forum-comment--wrapper,
+    .form--business-comment--wrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+
+      .form-content {
+        display: flex;
+        flex-direction: column;
+        row-gap: 12px;
+
+        .user-picture {
+          border-radius: 50%;
+          display: none;
+          height: 32px;
+          min-height: 32px;
+          min-width: 32px;
+          overflow: hidden;
+          width: 100%;
+          max-width: 32px;
+
+          .field {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .field--name-comment-body {
+          flex: auto;
+
+          .form-item {
+            margin: 0;
+          }
+
+          label,
+          .js-filter-wrapper {
+            display: none;
+          }
+
+          .form-type-textarea {
+            label {
+              display: none;
+            }
+
+            .form-textarea-wrapper {
+              .ck-toolbar_grouping {
+                border-radius: 8px 8px 0 0;
+              }
+
+              .ck-editor__editable_inline {
+                border-radius: 0 0 8px 8px;
+              }
+            }
+          }
+        }
+
+        .form-actions {
+          margin: 0;
+
+          .btn-primary {
+            @extend %raleway-700;
+            background: $color-energy0;
+            border-radius: 8px;
+            border: unset;
+            color: $color-eternity10;
+            font-feature-settings: 'pnum' on, 'lnum' on;
+            font-size: 15px;
+            line-height: 26px;
+            padding: 10px 24px;
+
+            &:hover {
+              background: $color-energy3;
+            }
+          }
+        }
+      }
+
+      .form-notifications {
+        .form-item-notify {
+          align-items: center;
+          column-gap: 8px;
+          display: flex;
+          margin: 0;
+
+          .option {
+            @extend %inter-600;
+            color: $color-eternity4;
+            font-size: 15px;
+            letter-spacing: -.4px;
+            line-height: 26px;
+          }
+
+          .comment-notify {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .comment--comments-wrapper {
+    overflow: hidden;
+
+    .form--forum-comment .form--forum-comment--wrapper,
+    .form--business-comment .form--business-comment--wrapper {
+      .form-content {
+        position: relative;
+        padding-left: 40px;
+
+        .user-picture {
+          border-radius: 50%;
+          display: flex;
+          height: 32px;
+          left: 0;
+          min-height: 32px;
+          min-width: 32px;
+          overflow: hidden;
+          position: absolute;
+          top: 0;
+          width: 32px;
+        }
+      }
+
+      .form-notifications {
+        padding-left: 40px;
+      }
+    }
+
+    .comment {
+      border-top: 1px solid $color-eternity8;
+      position: relative;
+      width: 100%;
+
+      &:first-child {
+        border: unset;
+      }
+
+      .comment--user-picture {
+        border-radius: 50%;
+        height: 32px;
+        left: 0;
+        min-height: 32px;
+        min-width: 32px;
+        overflow: hidden;
+        position: absolute;
+        top: 16px;
+        width: 32px;
+      }
+
+      .comment--comment-data {
+        margin-left: 44px;
+        padding: 19px 0 16px 0;
+
+        .comment--comment-info {
+          display: flex;
+          align-items: center;
+          column-gap: 12px;
+
+          .comment__author .username {
+            @extend %inter-600;
+            color: $color-eternity0;
+            font-size: 15px;
+            letter-spacing: -0.4px;
+            line-height: 26px;
+
+            &:hover {
+              color: $color-eternity3;
+            }
+          }
+
+          .comment__submitted {
+            @extend %inter-500;
+            color: $color-eternity4;
+            font-size: 15px;
+            letter-spacing: -0.4px;
+            line-height: 26px;
+          }
+        }
+
+        .content {
+          .field--name-comment-body {
+            @extend %inter-400;
+            color: $color-eternity2;
+            font-size: 15px;
+            letter-spacing: -0.4px;
+            line-height: 26px;
+
+            a {
+              @extend %inter-400;
+              color: $color-energy0;
+              font-size: 15px;
+              letter-spacing: -0.4px;
+              line-height: 26px;
+              text-decoration: underline;
+
+              &:hover {
+                color: $color-energy3;
+              }
+            }
+          }
+
+          .comment-links {
+            align-items: center;
+            column-gap: 16px;
+            display: flex;
+            flex-wrap: nowrap;
+
+            a {
+              @extend %inter-600;
+              color: $color-eternity4;
+              font-size: 14px;
+              letter-spacing: -0.3px;
+              line-height: 24px;
+            }
+
+            .replies {
+              color: $color-tenderness0;
+              white-space: nowrap;
+
+              &:hover {
+                color: $color-tenderness4;
+              }
+            }
+
+            .links.inline {
+              display: flex;
+              align-items: center;
+              column-gap: 8px;
+
+              li {
+                padding: 0;
+
+                &:hover {
+                  a {
+                    color: $color-eternity3;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .indented {
+      margin-left: 20px;
+
+      .comment {
+        &:first-of-type {
+          border-top: 1px solid $color-eternity8;
+          padding-top: 16px;
+        }
+
+        &:last-of-type {
+          padding-bottom: 16px;
+        }
+      }
+
+      .contextual-region.comment {
+        border-top: 1px solid $color-eternity8;
+
+        .comment--comment-data {
+          padding: 15px 0 12px 0;
+        }
+      }
+    }
+  }
+}
+
+.comment-list__item-body {
+  a {
+    @extend %inter-500;
+    color: $color-energy0;
+    text-decoration: underline;
+  }
+}
+
+@media (min-width: $screen__l) {
+  #node-forum-comment-forum {
+    .comment--form-wrapper,
+    .form--forum-comment {
+
+      .form--forum-comment--wrapper {
+
+        .form-content {
+          column-gap: 16px;
+          flex-direction: row;
+
+          .user-picture {
+            display: flex;
+          }
+
+          .form-actions {
+            display: flex;
+            flex-direction: column;
+            row-gap: 16px;
+
+            .btn-primary {
+              margin: 0;
+            }
+          }
+        }
+
+        .form-notifications {
+          margin-left: 48px;
+        }
+      }
+    }
+  }
+
+  .comment--wrapper {
+    .comment--comments-wrapper {
+      .indented {
+        margin-left: 44px;
+      }
+    }
+  }
+}

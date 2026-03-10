@@ -1,0 +1,185 @@
+@use "../base/variables_drupal" as *;
+
+.categories--desktop {
+  display: none;
+
+  .categories-links--title {
+    @extend %inter-600;
+  }
+
+  .main-links--item,
+  .categories-links--item {
+    display: flex;
+
+    .link {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+
+      span {
+        @extend %inter-500;
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .categories {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    padding-left: 24px;
+
+    .categories__wrapper {
+      max-height: 665px;
+      overflow: hidden;
+      transition: max-height 1s;
+    }
+
+    span {
+      color: $color-eternity3;
+
+      &:hover {
+        color: $color-eternity0;
+      }
+    }
+
+    .main-links,
+    .categories-links {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+     // max-width: calc(100% - 40px);
+    }
+
+    .categories-links--title {
+      color: $color-eternity4;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      line-height: 16px;
+      margin: 14px 0 6px 0;
+      text-transform: uppercase;
+    }
+
+    .main-links--item,
+    .categories-links--item {
+      display: flex;
+
+      .categories-links--item-wrapper .is-active span {
+        color: $color-eternity0;
+      }
+
+      &.show-children {
+        padding: 0 !important;
+
+        .categories-links--item-wrapper {
+          margin-bottom: 6px;
+          padding: 0 !important;
+
+          .is-active span {
+            color: $color-eternity0;
+          }
+
+          span {
+            color: $color-eternity0;
+          }
+        }
+
+        .categories-links--item-children {
+          gap: 4px;
+          margin-bottom: 8px;
+
+          .categories-links--item-child {
+            border: unset !important;
+
+            span {
+              font-size: 14px;
+              line-height: 24px;
+
+              &:hover,
+              &:focus,
+              &:active {
+                color: $color-tenderness0;
+              }
+            }
+
+            .is-active {
+              span {
+                color: $color-tenderness0;
+              }
+            }
+          }
+        }
+      }
+
+      .categories-links--item-wrapper {
+        justify-content: unset;
+      }
+
+      .link {
+        align-items: center;
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+
+        span {
+          font-size: 15px;
+          letter-spacing: -0.4px;
+          line-height: 26px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: $text-secondary;
+          @include lato-700;
+        }
+      }
+
+      .main-links--before-icon,
+      .categories-links--before-icon {
+        margin-right: 12px;
+      }
+    }
+
+    .categories__visibility {
+      align-items: center;
+      color: $color-energy0;
+      column-gap: 10px;
+      display: flex !important;
+      margin: 15px 0 0;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $color-energy3;
+        cursor: pointer;
+      }
+
+      &-less {
+        display: none;
+      }
+
+      &-more,
+      &-less {
+        font-size: 14px;
+        letter-spacing: -0.3px;
+        line-height: 24px;
+      }
+    }
+
+    &--more {
+      .categories__wrapper {
+        max-height: 1200px;
+      }
+
+      .categories__visibility-more {
+        display: none;
+      }
+
+      .categories__visibility-less {
+        display: flex;
+      }
+    }
+    .categories__visibility-add{
+
+    }
+  }
+}

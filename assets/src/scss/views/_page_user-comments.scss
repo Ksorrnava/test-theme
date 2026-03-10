@@ -1,0 +1,55 @@
+@use "../base/variables_drupal" as *;
+
+body {
+  &.path-user {
+    .view-comment {
+      padding: 16px;
+      background: $color-eternity10;
+      border-top: 1px solid $color-eternity8;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+
+      .comment-list__item-body {
+        display: block;
+        -webkit-box-orient: unset;
+        -webkit-line-clamp: unset;
+      }
+
+      .views-row {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+
+        +.views-row {
+          padding-top: 24px !important;
+          margin-top: 24px;
+        }
+      }
+
+      .comment-list__item {
+        &+.comment-list__item {
+          border-top: 1px solid $color-eternity8;
+        }
+      }
+
+      .view-empty {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  body {
+    &.path-user {
+      .view-comment {
+        padding: 24px;
+        border-left: 1px solid $color-eternity8;
+        border-right: 1px solid $color-eternity8;
+        border-bottom: 1px solid $color-eternity8;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }
+
+}

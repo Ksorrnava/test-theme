@@ -1,0 +1,87 @@
+@use "../base/variables_drupal" as *;
+.block-emigram-weather,
+.calendar {
+  border: 2px solid var(--bs-gray-200);
+  padding: 16px;
+  font-size: 13px;
+  border-radius: 10px;
+  width: 160px;
+  margin: 10px 0;
+  div {
+    margin: 5px 0;
+  }
+  .temperature,
+  .day {
+    font-size: 32px;
+    height: 50px;
+    padding: 15px 0;
+    font-weight: lighter;
+    font-family: var(--bs-font-sans-serif);
+  }
+}
+.block-emigram-weather{
+  .city {
+    font-weight: 600;
+  }
+
+  .symbol{
+    font-weight: 600;
+  }
+  .weather-image{
+    width: 20px;
+    height: 20px;
+    -webkit-filter: grayscale(25%);
+    -moz-filter: grayscale(25%);
+    -o-filter: grayscale(25%);
+    filter: grayscale(25%);
+  }
+  .temperature-max{
+    width: fit-content;
+    display: inline-block;
+    font-weight: 600;
+  }
+  .temperature-min{
+    width: fit-content;
+    display: inline-block;
+    font-weight: 600;
+  }
+  .temperature-max-min{
+    svg {
+      margin: -2px -4px 0 0;
+    }
+  }
+}
+
+.calendar{
+  .day-month{
+    height: 40px;
+    padding: 10px 0;
+    font-weight: lighter;
+    font-family: var(--bs-font-sans-serif);
+  }
+  .day-name{
+    font-weight: 600;
+  }
+  .month{
+    font-size: 16px;
+  }
+}
+
+.left-top-block-left {
+  width: 100%;
+  height: 116px;
+  position: relative;
+  #to-favorite{
+    position: absolute;
+    background-color: $bg-base-03;
+    width: 100%;
+    bottom: 0;
+    font-size: 12px;
+    svg {
+      margin-top: -2px;
+      margin-right: 5px;
+    }
+  }
+}
+
+

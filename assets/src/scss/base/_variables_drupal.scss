@@ -1,0 +1,200 @@
+// Theme variables.
+$navbar-brand-image-height: 36px !default;
+$navbar-brand-image-height-lg: 60px !default;
+$navbar-brand-image-width: auto !default;
+$navbar-brand-image-margin: 0 1rem 0 0 !default;
+
+$navbar-brand-site-title-text-transform: uppercase !default;
+$navbar-brand-site-title-font-size: 1.5rem !default;
+$navbar-brand-site-title-font-weight: bold !default;
+$navbar-brand-site-title-letter-spacing: 2px !default;
+$navbar-brand-site-slogan-font-size: .875rem !default;
+
+$region-padding: 0 .5rem !default;
+
+$footer-padding: 2rem 0 !default;
+
+$nav-tabs-link-active-bg-sm: #dee2e6 !default;
+
+$local-tasks-primary-margin: 1rem 0 !default;
+$local-tasks-secondary-margin: 0 0 1rem 0 !default;
+
+$table-striped-bg: #f9f9f9 !default;
+
+//Fonts
+
+$font-family-base: 'Lato', sans-serif;
+$lato-font-path: "/themes/custom/elfbv/assets/media/font/lato/";
+
+
+
+@mixin lato-100 {
+  font-family: $font-family-base;
+  font-weight: 100;
+  font-style: normal;
+}
+
+@mixin lato-200 {
+  font-family: $font-family-base;
+  font-weight: 200;
+  font-style: normal;
+}
+
+@mixin lato-300 {
+  font-family: $font-family-base;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin lato-400 {
+  font-family: $font-family-base;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin lato-500 {
+  font-family: $font-family-base;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin lato-600 {
+  font-family: $font-family-base;
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin lato-700 {
+  font-family: $font-family-base;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin lato-800 {
+  font-family: $font-family-base;
+  font-weight: 800;
+  font-style: normal;
+}
+
+%raleway-700 {
+  font-family: $font-family-base;
+  font-weight: 700;
+  font-style: normal;
+}
+
+%raleway-600 {
+  font-family: $font-family-base;
+  font-weight: 600;
+  font-style: normal;
+}
+
+%inter-400 {
+  font-family: $font-family-base;
+  font-weight: 400;
+  font-style: normal;
+}
+
+%inter-500 {
+  font-family: $font-family-base;
+  font-weight: 500;
+  font-style: normal;
+}
+
+%inter-600 {
+  font-family: $font-family-base;
+  font-weight: 600;
+  font-style: normal;
+}
+
+%inter-700 {
+  font-family: $font-family-base;
+  font-weight: 700;
+  font-style: normal;
+}
+
+//Colors
+
+$color-tenderness0: #4C76BE;
+$color-tenderness1: #324972;
+$color-tenderness2: #355385;
+$color-tenderness3: #3D5E98;
+$color-tenderness4: #446AAB;
+$color-tenderness5: #6387C5;
+$color-tenderness6: #829FD2;
+$color-tenderness7: #A6BBDF;
+$color-tenderness8: #C5D8F8;
+$color-tenderness9: #DEE7F8;
+$color-tenderness10: #EDF3FC;
+
+$color-energy0: #852C28;
+$color-energy1: #4F1F1C;
+$color-energy2: #5C2421;
+$color-energy3: #6A2926;
+$color-energy4: #803219;
+$color-energy5: #994B33;
+$color-energy6: #B56B54;
+$color-energy7: #CFA091;
+$color-energy8: #E7CAC1;
+$color-energy9: #F3E2DC;
+$color-energy10: #FCEFEB;
+
+$color-existence0: #97B461;
+$color-existence1: #4C5A31;
+$color-existence2: #5B6C3A;
+$color-existence3: #6A7E44;
+$color-existence4: #79904E;
+$color-existence5: #88A257;
+$color-existence6: #A1BC71;
+$color-existence7: #B6CB90;
+$color-existence8: #CBDAB0;
+$color-existence9: #E8EEDE;
+$color-existence10: #F5F8EF;
+
+$color-harmony0: #FFB46E;
+$color-harmony1: #4C3927;
+$color-harmony2: #664C34;
+$color-harmony3: #805F41;
+$color-harmony4: #99714D;
+$color-harmony5: #B3845A;
+$color-harmony6: #CC9767;
+$color-harmony7: #E6AA74;
+$color-harmony8: #FFCEA1;
+$color-harmony9: #FFEEDA;
+$color-harmony10: #FFF8F0;
+
+$color-eternity0: #1F1F1F;
+$color-eternity1: #262626;
+$color-eternity2: #434343;
+$color-eternity3: #6F6F6F;
+$color-eternity4: #9B9B9B;
+$color-eternity5: #C5C5C5;
+$color-eternity6: #D4D4D4;
+$color-eternity7: #E0E0E0;
+$color-eternity8: #EBEBEB;
+$color-eternity9: #F8F8F8;
+$color-eternity10: #FFFFFF;
+
+$screen__xxs: 320px;
+$screen__xs: 480px;
+$screen__s: 640px;
+$screen__m: 768px;
+$screen__l: 992px;
+$screen__xl: 1024px;
+$screen__xls: 1200px;
+$screen__xxl: 1400px;
+$screen__xxxl: 1900px;
+
+$bg-base-01: #FDFDFF;
+$bg-base-02: #F0F1F3;
+$bg-base-03: #E5E6EB;
+//$bg-base-04: ;
+$bg-base-05: #CDCED6;
+$bg-primary: #2D2F36;
+$background-color: $bg-base-01;
+$stroke-base-00: #D8D9E2;
+
+$text-primary:#25262D;
+$text-secondary:#4D5058;
+$text-tertiary: #73757C;
+$text-link: #26a69c;
+

@@ -1,0 +1,65 @@
+@use "../base/variables_drupal" as *;
+
+.block-system-breadcrumb-block {
+  margin: 0 16px 16px 13px;
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: nowrap;
+    height: auto;
+    margin: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    &-item {
+      @extend %inter-500;
+      align-items: flex-start;
+      background: $color-eternity8;
+      border-radius: 8px;
+      color: $color-eternity3;
+      display: flex;
+      font-size: 14px;
+      letter-spacing: -0.3px;
+      line-height: 24px;
+      padding: 4px 12px;
+      position: relative;
+
+      &:nth-child(1n):not(:first-child) {
+        margin: 0 0 0 28px;
+      }
+
+      &:before {
+        content: url("/themes/custom/elfbv/assets/media/icons/arrow-right.svg");
+        left: -17px;
+        padding: unset;
+        position: absolute;
+      }
+
+      &:last-child {
+        background: $color-tenderness9;
+        color: $color-tenderness0;
+      }
+
+      &:hover:not(:last-child) {
+        background: $color-eternity7;
+      }
+
+      a {
+        color: $color-eternity3;
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .block-system-breadcrumb-block {
+    margin: 0 24px 16px 24px;
+
+    [aria-label="breadcrumb"] {
+      align-items: center;
+      column-gap: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

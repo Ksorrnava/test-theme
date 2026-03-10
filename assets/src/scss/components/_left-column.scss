@@ -1,0 +1,152 @@
+@use "../base/variables_drupal" as *;
+.block-emigram-weather,
+.calendar {
+  border: 2px solid var(--bs-gray-200);
+  padding: 16px;
+  font-size: 13px;
+  border-radius: 10px;
+  width: 160px;
+  margin: 10px 0;
+  div {
+    margin: 5px 0;
+  }
+  .temperature,
+  .day {
+    font-size: 32px;
+    height: 50px;
+    padding: 15px 0;
+    font-weight: lighter;
+    font-family: var(--bs-font-sans-serif);
+  }
+}
+.block-emigram-weather{
+  .city {
+    font-weight: 600;
+  }
+
+  .symbol{
+    font-weight: 600;
+  }
+  .weather-image{
+    width: 20px;
+    height: 20px;
+    -webkit-filter: grayscale(25%);
+    -moz-filter: grayscale(25%);
+    -o-filter: grayscale(25%);
+    filter: grayscale(25%);
+  }
+  .temperature-max{
+    width: fit-content;
+    display: inline-block;
+    font-weight: 600;
+  }
+  .temperature-min{
+    width: fit-content;
+    display: inline-block;
+    font-weight: 600;
+  }
+  .temperature-max-min{
+    svg {
+      margin: -2px -4px 0 0;
+    }
+  }
+}
+
+.calendar{
+  .day-month{
+    height: 40px;
+    padding: 10px 0;
+    font-weight: lighter;
+    font-family: var(--bs-font-sans-serif);
+  }
+  .day-name{
+    font-weight: 600;
+  }
+  .month{
+    font-size: 16px;
+  }
+}
+
+.left-top-block-left {
+  width: 100%;
+  margin: 0 auto 20px;
+  .leaf-wrapper{
+    display: inline-flex;
+    margin-bottom: 16px;
+    .leaf-title-wrapper{
+      position: relative;
+    }
+    .leaf-logo{
+
+      left: 0;
+      border: 1px solid var(--bs-gray-300);
+      border-radius: 16px;
+    }
+    .leaf-title{
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -1%;
+    }
+    .leaf-users{
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      bottom: 0;
+      position: absolute;
+      .leaf-participants{
+        font-size: 12px;
+        color: $text-tertiary;
+        font-weight: 600;
+      }
+    }
+    @media (max-width: $screen__xxl) {
+      .leaf-logo{
+        margin: 5px 10px 2px 0;
+      }
+      .leaf-title {
+        line-height: 40px;
+      }
+      .leaf-users {
+        bottom: 7px;
+      }
+    }
+    @media (min-width: $screen__xxl) {
+      .leaf-logo{
+        margin: 2px 10px 20px 0;
+      }
+      .leaf-title-wrapper {
+        position: relative;
+        .leaf-title {
+          line-height: 26px;
+        }
+        .leaf-users {
+          bottom: 0;
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  #block-add-leaf-to-favorite{
+    width: 100%;
+    #add-leaf-to-favorite{
+      #edit-submit{
+        width: 100%;
+        font-size: 14px;
+        font-weight: 600;
+        background-color: $bg-base-03;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /*background-image: url(/themes/custom/elfbv/assets/media/icons/favorite.svg);
+        background-repeat: no-repeat;
+        background-position-y: center;
+        background-position-x: calc(50svw - 10px);*/
+      }
+      &::first-letter {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+

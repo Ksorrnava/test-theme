@@ -1,0 +1,15 @@
+.page-node-type-forum {
+  .node__content {
+    .images--item {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    img {
+      object-fit: contain;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

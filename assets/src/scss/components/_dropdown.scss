@@ -1,0 +1,94 @@
+@use "../base/variables_drupal" as *;
+
+.dropdown {
+  background: transparent;
+  display: none;
+
+  &__item {
+    align-items: center;
+    background: $color-eternity10;
+    border: 1px solid $color-eternity8;
+    border-bottom: unset;
+    display: flex;
+    height: 46px;
+    padding: 10px 12px;
+    width: auto;
+
+    &:first-child {
+      border-radius: 7px 7px 0 0;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid $color-eternity8;
+      border-radius: 0 0 7px 7px;
+    }
+
+    &-icon {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    &-type {
+      @extend %inter-600;
+      align-items: center;
+      color: $color-eternity4;
+      display: flex;
+      font-size: 12px;
+      height: 100%;
+      letter-spacing: 0.5px;
+      line-height: 16px;
+      padding-left: 4px;
+      text-transform: uppercase;
+    }
+
+    &-link {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+    }
+
+    &-drop {
+      @extend %inter-500;
+      color: $color-eternity3;
+      font-size: 15px;
+      letter-spacing: -0.4px;
+      line-height: 26px;
+    }
+  }
+
+  .item-dropdown {
+    display: none;
+
+    .dropdown__item {
+      border-radius: unset;
+      padding-left: 44px;
+    }
+
+    .dropdown__title {
+      color: $color-eternity3;
+    }
+  }
+
+  &__before-icon {
+    margin: 0 12px 0 0;
+  }
+
+  &__title {
+    @extend %inter-500;
+    color: $color-eternity0;
+    font-size: 15px;
+    letter-spacing: -0.4px;
+    line-height: 26px;
+
+    &:active,
+    &:focus,
+    &--checked {
+      color: $color-eternity0 !important;
+    }
+  }
+
+  &__after-icon {
+    margin: 0 0 0 auto;
+  }
+}

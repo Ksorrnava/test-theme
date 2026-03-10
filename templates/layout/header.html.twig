@@ -1,0 +1,56 @@
+{% set burger_icon = path_images ~ '/icons/burger.svg' %}
+{% set logo_icon = path_theme ~ '/logo.svg' %}
+
+{% if page.nav_branding or page.nav_main or page.nav_additional %}
+  <header id="header" class="header">
+    <nav class="header__nav">
+          <div class="row w-100 g-0">
+            <div class="col-9 col-sm-7 col-lg-8 col-xl-9 col-xxl-3-left-emigram">
+              <div class="top-logo d-flex d-xs-flex d-sm-flex d-xxl-block">
+                <img src="{{ logo_icon }}">
+                <div class="d-none d-xxl-block text-end logo-text">{{ 'The world is your home!'|t }}</div>
+                <div class="mx-3 py-2 menu-button-wrapper">
+                  <a class="menu__button-open" type="button" id="menu__button-burger">
+                    {{ source(burger_icon) }}
+                  </a>
+                </div>
+                {{ page.nav_mobile }}
+              </div>
+            </div>
+            <div id="top-menu-wrapper" class="d-none col-xs-none d-md-none d-sm-none d-xl-none col-xxl-6-emigram">
+              <div id="top-menu" class="menu top-menu">
+                {{ drupal_menu('top-menu') }}
+
+              </div>
+            </div>
+            <div class="col-3 col-sm-5 col-lg-4 col-xl-3 col-xxl-3-right-emigram">
+              <div class="header-right-menu d-flex ">
+                <div class="top-menu-diaspora mx-1 d-none d-sm-block">
+                  <a class="diaspora-link text-black dropdown-toggle" href="#"
+                     role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
+                  >{{ 'Diaspora'|t }}</a>
+                  {{ drupal_view('top_menu_diaspora', 'block') }}
+                </div>
+                <a href="#" class="top-visually-impaired mx-2 d-none d-sm-block">
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.4146 6C10.4146 7.47276 9.22073 8.66667 7.74797 8.66667C6.27521 8.66667 5.0813 7.47276 5.0813 6C5.0813 4.52724 6.27521 3.33333 7.74797 3.33333C9.22073 3.33333 10.4146 4.52724 10.4146 6ZM9.0813 6C9.0813 6.73638 8.48435 7.33333 7.74797 7.33333C7.01159 7.33333 6.41463 6.73638 6.41463 6C6.41463 5.26362 7.01159 4.66667 7.74797 4.66667C8.48435 4.66667 9.0813 5.26362 9.0813 6Z" fill="#25262D"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.74797 0C11.4756 0 14.6078 2.54955 15.4959 6C14.6078 9.45046 11.4756 12 7.74797 12C4.02029 12 0.888086 9.45046 0 6C0.888086 2.54955 4.02029 0 7.74797 0ZM7.74797 10.6667C4.76425 10.6667 2.23551 8.70542 1.38612 6C2.23551 3.29458 4.76426 1.33333 7.74797 1.33333C10.7317 1.33333 13.2604 3.29458 14.1098 6C13.2604 8.70542 10.7317 10.6667 7.74797 10.6667Z" fill="#25262D"></path>
+                  </svg>
+                </a>
+                <div class="top-language-switcher mx-2 d-none d-sm-block">
+                  {{ include('@elfbv/templates/layout/language-switcher.html.twig',{
+                    defaultlang: defaultlang,
+                    languages: languages,
+                  })}}
+                </div>
+                {{ include('@elfbv/templates/layout/user-login.html.twig',{
+                  defaultlang: defaultlang,
+                  languages: languages,
+                  user_picture: user_picture,
+                })}}
+              </div></div>
+          </div>
+        </nav>
+  </header>
+  {{ include('@elfbv/templates/layout/visually_impaired.html.twig') }}
+{% endif %}

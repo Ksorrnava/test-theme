@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ */
+#}
+<main role="main" class="error">
+  <div class="error__wrapper">
+    <div class="error__background-image">
+      <img src="{{ file_url('/themes/custom/elfbv/assets/media/errors/bg-error-main.svg') }}" alt="">
+    </div>
+    <div class="error__message">
+      <p class="error__title">403</p>
+      <p class="error__text">{{ 'You do not have permission to access this page'|t }}</p>
+      <a class="error__button" href="/">{{ 'Go back to main page'|t }}</a>
+    </div>
+  </div>
+</main>

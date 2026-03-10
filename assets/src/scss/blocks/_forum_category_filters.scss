@@ -1,0 +1,155 @@
+@use "../base/variables_drupal" as *;
+
+.view-id-leaf_child.view-display-id-main,
+.view-display-id-business_main {
+  .views-exposed-form {
+    padding: 16px 20px;
+
+    .form--inline {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      row-gap: 12px;
+
+      &:after {
+        content: unset;
+      }
+
+      & > .form-wrapper {
+        column-gap: 24px;
+        display: flex;
+        margin-right: auto;
+        position: relative;
+
+        &:not(#edit-my-count-field):not([id^="edit-my-count-field"]) {
+          &:after {
+            align-items: center;
+            content: url("/themes/custom/elfbv/assets/media/icons/fire.svg");
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translate(0, -50%);
+            width: 20px;
+          }
+        }
+
+        .btn-primary[name='sort_by_all'],
+        .btn-primary[name='sort_by_popular'] {
+          background: unset;
+          border: unset;
+          font-size: 15px;
+          letter-spacing: -0.4px;
+          line-height: 26px;
+          margin: 0;
+          @extend %inter-400;
+          color: $color-eternity3;
+
+
+          &:hover,
+          &:focus,
+          &:active {
+            color: $color-eternity2;
+          }
+
+          &.selected-filter {
+            @extend %inter-500;
+            color: $color-eternity0;
+          }
+        }
+
+        .btn-primary[name='sort_by_all'] {
+          padding: 0;
+        }
+
+        .btn-primary[name='sort_by_popular'] {
+          padding: 0 28px 0 0;
+        }
+      }
+
+      .form-item-view-mode,
+      .form-item-sort-bef-combine {
+        align-items: center;
+        column-gap: 8px;
+        display: flex;
+        margin: 0;
+
+        .select2-container.select2-container--default {
+          width: auto !important;
+
+          &.select2-container--open {
+            left: unset !important;
+          }
+
+          .select2-selection--single {
+            align-items: center;
+            background: unset;
+            border: unset;
+            display: flex;
+
+            .select2-selection__rendered {
+              @extend %inter-500;
+              color: $color-eternity0;
+              font-size: 14px;
+              letter-spacing: -0.3px;
+              line-height: 24px;
+              padding-right: 28px;
+            }
+          }
+        }
+
+        label {
+          @extend %inter-400;
+          color: $color-eternity3;
+          font-size: 14px;
+          letter-spacing: -0.3px;
+          line-height: 24px;
+          white-space: nowrap;
+        }
+      }
+
+      & > .form-actions.form-wrapper {
+        display: none;
+      }
+    }
+  }
+}
+
+.select-dropdown--view-mode,
+.select-dropdown--sort-by {
+  margin-top: 10px;
+  width: max-content !important;
+
+  .select2-dropdown--below {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: $screen__l) {
+  .view-id-leaf_child.view-display-id-main,
+  .view-display-id-business_main {
+    .views-exposed-form {
+      .form--inline {
+        align-items: center;
+        column-gap: 16px;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        & > .form-wrapper {
+          column-gap: 32px;
+        }
+      }
+    }
+  }
+
+  .view-display-id-business_main .views-exposed-form .form--inline #edit-my-count-field,
+  .view-display-id-business_main .views-exposed-form .form--inline [id^="edit-my-count-field"] {
+    flex: 100%;
+    column-gap: 8px;
+
+    &:after {
+      content: none;
+    }
+  }
+}

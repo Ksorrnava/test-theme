@@ -1,0 +1,317 @@
+@use "../base/variables_drupal" as *;
+
+.favorite-cultural-group {
+  .favorite_button {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-eternity9;
+    border-radius: 8px;
+    border: unset;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    transition-timing-function: linear;
+
+    &:hover {
+      background-color: $color-eternity8;
+    }
+  }
+}
+
+.favorite-cultural-group-content {
+  position: relative;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    position: fixed;
+    top: calc(var(--fixed-elements-top-space, 0px) + 68px);
+    right: 16px;
+    background-color: $color-eternity10;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid $color-eternity8;
+    box-shadow: 0 6px 24px -6px rgba($color-tenderness3, 0.24);
+    min-width: 222px;
+    width: calc(100% - 32px);
+  }
+
+  .favorite-list {
+    border: 1px solid $color-eternity8;
+    border-radius: 8px;
+  }
+
+  .favorite-list__wrapper {
+    display: flex;
+    flex-direction: column;
+    max-height: 119px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 3px;
+      width: 6px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      background-color: $color-eternity6;
+      background-clip: content-box;
+    }
+
+    @-moz-document url-prefix() {
+      scrollbar-color: $color-eternity6 transparent;
+    }
+
+    a {
+      display: inline-flex;
+      padding-top: 7px;
+      padding-bottom: 8px;
+      padding-left: 11px;
+      padding-right: 11px;
+      justify-content: space-between;
+      column-gap: 8px;
+      @extend %inter-500;
+      color: $color-eternity0;
+      font-size: 14px;
+      line-height: 1.714;
+      letter-spacing: -0.3px;
+
+      &:not(:first-of-type) {
+        border-top: 1px solid $color-eternity8;
+      }
+
+      svg {
+        transform: rotate(-45deg);
+        min-width: 18px;
+        min-height: 18px;
+      }
+    }
+  }
+
+  .favorite-list__link-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    box-orient: vertical;
+    display: -moz-box;
+    display: -webkit-box;
+    line-clamp: 1;
+  }
+}
+
+.favorite-clg__button {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  width: 100%;
+  border-radius: 8px;
+  @extend %raleway-700;
+  font-size: 15px;
+  line-height: 1.733;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.favorite-clg__button--home {
+  background-color: $color-eternity10;
+  border-color: $color-energy0;
+  color: $color-energy0;
+
+  &[disabled] {
+    background-color: $color-eternity9;
+    border-color: $color-eternity9;
+    color: $color-eternity6;
+
+    svg {
+      path {
+        stroke: $color-eternity6;
+      }
+    }
+
+    &.is-default-clg {
+      background-color: $color-energy0;
+      color: $color-eternity10;
+
+      svg {
+        path {
+          stroke: $color-eternity10;
+        }
+      }
+    }
+  }
+}
+
+.block-default-clg-block {
+  & + .block-forum-auth-block {
+    margin-left: auto;
+  }
+}
+
+.favorite-clg__button--favorite {
+  background-color: $color-eternity10;
+  border-color: $color-tenderness0;
+  color: $color-tenderness0;
+
+  &.in-favorites {
+    color: $color-eternity10;
+    background-color: $color-tenderness0;
+
+    svg {
+      path {
+        stroke: $color-eternity10;
+      }
+    }
+  }
+
+  &.is-disabled-clg {
+    &:not(.in-favorites) {
+      background-color: $color-eternity9;
+      border-color: $color-eternity9;
+      color: $color-eternity6;
+
+      svg {
+        path {
+          stroke: $color-eternity6;
+        }
+      }
+    }
+  }
+}
+
+.clg-main-leaf-modal {
+  max-width: 640px;
+  width: 100% !important;
+
+  .set-cultural-group {
+    width: 100%;
+    justify-content: center;
+    padding: 40px 41px;
+  }
+
+  .form-content__wrapper {
+    row-gap: 32px;
+    align-items: center;
+
+    &>.form-wrapper {
+      display: flex;
+      column-gap: 16px;
+      justify-content: center;
+    }
+  }
+
+  .button {
+    margin: 0;
+    min-width: 121px;
+    @extend %raleway-700;
+    font-size: 15px;
+    line-height: 1.733;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 23px;
+    padding-right: 23px;
+    color: $color-eternity10;
+    letter-spacing: 0;
+
+    &.dialog-cancel {
+      background-color: $color-eternity10;
+      color: $color-tenderness0;
+      border-color: $color-tenderness8;
+
+      &:hover {
+        background-color: $color-tenderness8;
+      }
+    }
+  }
+}
+
+.form--set-cultural-group__heading {
+  @extend %raleway-700;
+  font-size: 14px;
+  line-height: 1.814;
+  letter-spacing: -0.25px;
+  color: $color-eternity2;
+  text-align: center;
+  max-width: 436px;
+}
+
+.form--set-cultural-group__icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: $color-energy10;
+}
+
+@media (max-width: 991px) {
+  .clg-main-leaf-modal {
+    height: max-content !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    overflow: hidden !important;
+    width: calc(100% - 32px);
+
+    #drupal-modal {
+      overflow-x: hidden;
+    }
+
+    &.ui-dialog {
+      .ui-dialog-titlebar {
+        position: absolute;
+        background-color: transparent;
+        border-bottom: unset;
+        z-index: 101;
+        left: unset;
+        right: 24px;
+
+        button {
+
+          background-image: url("/themes/custom/elfbv/assets/media/icons/close.svg");
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .favorite-cultural-group-content {
+    position: relative;
+
+    &__wrapper {
+      position: absolute;
+      width: auto;
+      top: 10px;
+      right: 0;
+    }
+  }
+
+  .clg-main-leaf-modal {
+    .set-cultural-group {
+      padding-left: 56px;
+      padding-right: 56px;
+    }
+  }
+
+  .form--set-cultural-group__heading {
+    font-size: 18px;
+    line-height: 1.333;
+    letter-spacing: -0.25px;
+  }
+}
+

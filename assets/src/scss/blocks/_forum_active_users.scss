@@ -1,0 +1,74 @@
+@use "../base/variables_drupal" as *;
+
+.forum-active-users-block {
+  display: none;
+
+  .forum-active-users-block__title {
+    @extend %inter-600;
+  }
+
+  .forum-active-users-block__user-item {
+    span {
+      @extend %inter-400;
+
+      &:nth-child(2) {
+        @extend %inter-600;
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .forum-active-users-block {
+    display: flex;
+    margin-left: 16px;
+
+    .forum-active-users-block__title {
+      margin: 24px 0 16px 0;
+
+      h3 {
+        color: $color-eternity4;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        line-height: 16px;
+        text-transform: uppercase;
+      }
+    }
+
+    .forum-active-users-block__users {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+
+      .forum-active-users-block__user-item {
+        display: flex;
+        column-gap: 12px;
+
+        span {
+          color: $color-eternity0;
+          font-size: 15px;
+          letter-spacing: -0.4px;
+          line-height: 26px;
+
+          &:hover,
+          &:active,
+          &:focus {
+            color: $color-eternity1;
+            cursor: pointer;
+          }
+
+          &.delta {
+            color: $color-eternity3;
+          }
+        }
+
+        .field--name-user-picture {
+          border-radius: 50%;
+          height: 24px;
+          overflow: hidden;
+          width: 24px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+@use "../base/variables_drupal" as *;
+
+.ui-dialog {
+  .ui-dialog-titlebar {
+    align-items: center;
+    background: transparent;
+    border-bottom: 1px solid $color-eternity8;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    column-gap: 24px;
+    flex-direction: row !important;
+    right: unset;
+    top: unset;
+
+    &:before,
+    &:after {
+      content: unset;
+    }
+
+    .ui-dialog-title {
+      @extend %raleway-700;
+      color: $color-eternity2;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      font-size: 18px;
+      letter-spacing: -0.25px;
+      line-height: 24px;
+      margin: 0;
+    }
+
+    .ui-dialog-titlebar-close {
+      margin: 0;
+      position: absolute;
+      background: var(--bs-btn-close-bg);
+      transform: translate(-50%, -50%);
+
+      .ui-button-icon {
+        display: none;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        box-shadow: unset;
+      }
+    }
+  }
+
+  &.modal--paragraph-remove {
+    .ui-dialog-titlebar {
+      align-items: center;
+      background: transparent;
+      border-bottom: 1px solid $color-eternity8;
+      display: flex;
+      justify-content: space-between;
+      padding: 16px;
+      column-gap: 24px;
+      flex-direction: row !important;
+      right: unset;
+      top: unset;
+
+      &:before,
+      &:after {
+        content: unset;
+      }
+
+      .ui-dialog-title {
+        @extend %raleway-700;
+        color: $color-eternity2;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        font-size: 18px;
+        letter-spacing: -0.25px;
+        line-height: 24px;
+        margin: 0;
+      }
+
+      .ui-dialog-titlebar-close {
+        margin: 0;
+        position: absolute;
+        background: var(--bs-btn-close-bg);
+        transform: translate(-50%, -50%);
+
+        .ui-button-icon {
+          display: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+          box-shadow: unset;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 48em) {
+  .ui-dialog {
+    &.ui-front {
+      width: 100% !important;
+    }
+  }
+}

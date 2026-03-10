@@ -1,0 +1,14 @@
+@use "../base/variables_drupal" as *;
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$lato-font-path}Lato-Black.eot');
+  src: local('Lato Black'),
+       local('Lato-Black'),
+       url('#{$lato-font-path}Lato-Black.eot?#iefix') format('embedded-opentype'),
+       url('#{$lato-font-path}Lato-Black.woff2') format('woff2'),
+       url('#{$lato-font-path}Lato-Black.woff') format('woff'),
+       url('#{$lato-font-path}Lato-Black.ttf') format('truetype'),
+       url('#{$lato-font-path}Lato-Black.svg#lato') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}

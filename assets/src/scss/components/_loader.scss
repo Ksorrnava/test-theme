@@ -1,0 +1,19 @@
+@use "../base/variables_drupal" as *;
+
+.ajax-progress {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+  height: 100% !important;
+  width: 100% !important;
+
+  .ajax-throbber {
+    left: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    .sk-bounce-dot {
+      background-color: $color-energy0;
+    }
+  }
+}

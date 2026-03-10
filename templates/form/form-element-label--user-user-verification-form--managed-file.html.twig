@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override for a form element label.
+#}
+
+{% if is_user_has_picture() %}
+  {% set attributes = attributes.addClass('hidden') %}
+{% endif %}
+
+<label{{ attributes.addClass('managed-file-fake user-edit__file-upload-label') }}>
+  <div class="icon--upload">
+    {{ source("/themes/custom/elfbv/assets/media/icons/upload.svg") }}
+  </div>
+  <div class="action-text">
+    {% trans %}
+      <span>Нажмите</span>,  чтобы загрузить скан паспорта.
+    {% endtrans %}
+  </div>
+</label>

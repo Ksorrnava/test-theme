@@ -1,0 +1,15 @@
+{% set module = 'social-auth' %}
+
+{{ attach_library('social_auth/auth-icons') }}
+
+<div class="social-auth--wrapper">
+  {% for social_network in social_networks %}
+    {% set uri = (destination) ? path(social_network.route) ~ '?destination=' ~ (destination|url_encode) :  path(social_network.route) %}
+    {% set image = file_url(base_path ~ social_network.img_path) %}
+    <div class="social-auth--item">
+      <a class="{{ module }} auth-link" href="{{ uri }}">
+        <span>{{ 'Login with'|t }}</span>{{ source(image) }}
+      </a>
+    </div>
+  {% endfor %}
+</div>

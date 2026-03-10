@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{% for item in items %}
+  <span class="count-value">{{ item.content }}</span>
+{% endfor %}

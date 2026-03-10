@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ */
+#}
+{{ attach_library('elfbv/slick-slider-init') }}
+<div class="images images--wrapper">
+  {% for item in items %}
+    <div class="images--item">{{ item.content }}</div>
+  {% endfor %}
+</div>

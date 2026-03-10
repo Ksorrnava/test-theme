@@ -1,0 +1,42 @@
+@use "../base/variables_drupal" as *;
+
+/*  Bounce
+      <div class="loader loader--bounce" style="--loader-size: X; --loader-color: #XXXXXX">
+        <div class="loader-bounce-dot"></div>
+        <div class="loader-bounce-dot"></div>
+      </div>
+*/
+.loader {
+  &.loader--bounce {
+    position: relative;
+    width: var(--loader-size);
+    height: var(--loader-size);
+  }
+
+  .loader-bounce-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: elfbv-loader-bounce 2s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    opacity: 0.6;
+    border-radius: 50%;
+    background-color: var(--loader-color);
+
+    &:nth-child(2) {
+      animation-delay: -1s;
+    }
+  }
+}
+
+@keyframes elfbv-loader-bounce {
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  45%,
+  55% {
+    transform: scale(1);
+  }
+}

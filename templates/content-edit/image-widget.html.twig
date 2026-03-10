@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Theme override for an image field widget.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - data: Render elements of the image widget.
+ *
+ * @see template_preprocess_image_widget()
+ */
+#}
+
+{% set file_id = "file_" ~ data["fids"]["#value"][0] %}
+{% set parents = data['fids']['#parents'] %}
+{% set image_style %}
+  {% if data['preview']['#style_name'] %}
+    {{ data['preview']['#style_name'] }}
+  {% else %}
+    {{ 'thumbnail' }}
+  {% endif %}
+{% endset %}
+{% set imageStyleUrl = data['preview']['#uri'] | image_style('thumbnail') %}
+<div{{ attributes }}>
+  <div class="user-edit-form__uploaded-image-wrapper">
+
+    {% if 'verification_document' in parents %}
+      {{ data }}
+    {% else %}
+
+      {% if data.preview %}
+
+        <img src="{{ imageStyleUrl }}" alt="Profile preview image" class="user-edit-form__uploaded-image" loading="lazy">
+
+        {{ data.remove_button }}
+      {% endif %}
+
+      {{ data | without("preview")| without("remove_button") | without(file_id) }}
+    {% endif %}
+
+  </div>
+</div>

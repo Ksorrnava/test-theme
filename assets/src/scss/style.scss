@@ -1,0 +1,103 @@
+// Include bootstrap.
+//@forward '../../../../../contrib/bootstrap5/scss/style';
+
+// Base
+@forward "base/fonts";
+@forward "font/lato";
+@forward 'base/variables_bootstrap';
+
+// Components.
+@forward 'components/select2';
+@forward 'components/header';
+@forward "components/dropdown";
+@forward "components/left_menu";
+@forward "components/languages";
+@forward "components/slick";
+@forward "components/registration";
+@forward "components/errors";
+@forward "components/site_rules";
+@forward "components/contact_us";
+@forward "components/node_footer";
+@forward "components/modals";
+@forward "components/loader";
+@forward "components/copyright";
+@forward "components/pagination";
+@forward "components/announcement-bar";
+@forward "components/leaflet-map";
+@forward "components/top_menu";
+@forward "components/visually_impaired";
+@forward "components/footer";
+@forward "components/left-column";
+@forward "components/right_column";
+
+// UI elements
+@forward "ui/button";
+@forward "ui/modal";
+@forward "ui/loader";
+
+// Paragraphs
+@forward 'paragraphs/poll';
+
+// Blocks
+@forward "blocks/default-clg";
+@forward "blocks/favorite-culture-group";
+@forward "blocks/favorite-culture-group-content";
+@forward "blocks/forum_active_users";
+@forward "blocks/forum_categories_desktop";
+@forward "blocks/forum_сategories_mobile";
+@forward "blocks/forum-secondary-nav-menu";
+@forward "blocks/forum-contact-info";
+@forward "blocks/find-culture-group";
+@forward "blocks/recommended-clg-modal";
+@forward "blocks/left-column";
+
+
+//@forward "blocks/forum_comments";
+@forward "blocks/forum_category_description";
+@forward "blocks/forum_category_filters";
+@forward "blocks/forum_comments_right";
+@forward "blocks/_forum-advertisement";
+@forward "blocks/forum-referral-programm";
+@forward "blocks/mobile-bottom-menu";
+@forward "blocks/_sidebar-pinned-poll";
+@forward "blocks/modal-logout";
+
+// Content.
+@forward "content/forum";
+@forward "content/comments";
+@forward "content/user_private_messages";
+@forward "content/categories_list";
+@forward "content/business_list";
+@forward "content/search_page";
+
+// Navigation.
+@forward "navigation/breadcrumb";
+@forward "navigation/nav_bar";
+
+//pages
+@forward "pages/user-reset-password";
+@forward "pages/user-login";
+@forward "pages/detailed-forum";
+@forward "pages/detailed-business";
+
+// Forms
+@forward "form/add_forum_topic_form";
+@forward "form/find_cultural_group_form";
+
+// Views
+@forward "views/page_faq";
+@forward "views/page_advertisement";
+@forward "views/page_comments";
+@forward "views/page_user-profile";
+@forward "views/page_user-edit";
+@forward "views/page_user-comments";
+@forward "views/page_user-publications";
+@forward "views/page-home";
+@forward "views/page-user-actions";
+@forward "views/page-detailed-business";
+@forward "views/page-detailed-forum";
+@forward "views/page-polls-list";
+@forward "views/page-detailed-poll-item";
+
+// Include global style
+@forward "base/main_style";

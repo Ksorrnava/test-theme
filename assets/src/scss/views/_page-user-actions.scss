@@ -1,0 +1,8 @@
+@use "../base/variables_drupal" as *;
+
+.user-profile-actions {
+  .user-profile-page__heading-row {
+    padding-left: 0;
+    column-gap: 8px;
+  }
+}

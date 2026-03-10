@@ -1,0 +1,101 @@
+@use "../base/variables_drupal" as *;
+
+
+
+@media (min-width: 768px) {
+  .main-page-footer{
+    background-image: url('/themes/custom/elfbv/assets/media/background/footer1.png');
+    background-repeat: no-repeat;
+    background-size: 170px;
+    background-position: right bottom;
+    .region-footer{
+      background-image: url(/themes/custom/elfbv/assets/media/background/footer2.png);
+      background-position-y: 100%;
+      background-repeat: no-repeat;
+      background-position-x: calc(10vw - 50px);
+      background-size: 150px;
+      min-height: 280px;
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .main-page-footer{
+    background-size: 267px;
+    background-position-x: 75vw;
+    .region-footer{
+      background-position-x: calc(25vw - 320px);
+      background-size: 300px;
+      min-height: 280px;
+     }
+  }
+  .main-page-footer,
+  .main-page-footer a{
+    font-size: 14px;
+  }
+ }
+footer .region-footer {
+  gap: 0 !important;
+  flex-direction: column;
+}
+.main-page-footer__links-wrapper {
+  ul {
+    li {
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.main-page-footer{
+  .copyright{
+    text-align: center;
+    color: var(--bs-body-color);
+    padding: 20px;
+    font-size: 14px;
+  }
+}
+.region-footer{
+  .footer-logo {
+    width: 135px;
+    margin: auto;
+    .logo-text {
+      font-size: 9.5px;
+      text-align: right;
+      margin-top: -7px;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+  }
+  .block-main-footer-block {
+    max-width: 600px;
+    margin: auto;
+    .nav-item {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+  .block-social-media-links-block {
+    margin: auto;
+    li {
+      display: inline;
+      list-style-type: none;
+      padding: 3px 0 !important;
+      background-color: var(--bs-gray-300);
+      margin: 2px;
+      border-radius: 4px;
+      a{
+        padding: 0 40px;
+        color: black;
+        text-align: center;
+        font-size: 12px;
+        svg {
+          margin-left: 3px;
+        }
+        .fa-2x {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+

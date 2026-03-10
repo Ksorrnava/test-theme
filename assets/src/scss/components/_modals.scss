@@ -1,0 +1,313 @@
+@use "../base/variables_drupal" as *;
+
+.modal--paragraph-remove {
+  background: $color-eternity10;
+  border: 1px solid $color-eternity8 !important;
+  border-radius: 8px;
+
+  .ui-dialog-titlebar {
+    background: unset;
+    border: unset;
+
+    button {
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: unset;
+      }
+    }
+  }
+
+  .ui-dialog-content {
+    margin: 40px 56px;
+    overflow: unset;
+    padding: 0;
+
+    .confirmations--paragraph-delete {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      row-gap: 16px;
+
+      .icon-placeholder {
+        background: $color-energy10;
+        border-radius: 100px;
+        height: 56px;
+        margin: 0 auto 16px auto;
+        position: relative;
+        width: 56px;
+
+        &:after {
+          content: url("/themes/custom/elfbv/assets/media/icons/alert-danger.svg");
+          height: 20px;
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      h2 {
+        @extend %raleway-700;
+        color: $color-eternity2;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        font-size: 18px;
+        letter-spacing: -0.25px;
+        line-height: 24px;
+        text-align: center;
+      }
+
+      .body {
+        @extend %inter-400;
+        color: $color-eternity3;
+        font-size: 15px;
+        letter-spacing: -0.4px;
+        line-height: 26px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+
+      a {
+        @extend %raleway-700;
+        background: $color-eternity10;
+        border-radius: 8px;
+        border: 1px solid $color-tenderness8;
+        color: $color-tenderness0;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        font-size: 15px;
+        line-height: 26px;
+        padding: 10px 24px;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          border-color: $color-tenderness6;
+        }
+      }
+    }
+  }
+}
+
+.modal-user-private-messages {
+  border: unset;
+  border-radius: 8px;
+  width: auto !important;
+
+  .ui-dialog-titlebar.ui-helper-clearfix {
+    background: transparent;
+    border: unset;
+    padding: 0;
+
+    .ui-dialog-title {
+      background: $color-energy10;
+      border-radius: 50%;
+      font-size: 0;
+      height: 56px;
+      left: 50%;
+      position: absolute;
+      top: 40px;
+      transform: translate(-50%, 0);
+      width: 56px;
+
+      &:after {
+        content: url("/themes/custom/elfbv/assets/media/icons/alert-danger.svg");
+        height: 18px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .ui-dialog-titlebar-close {
+      content: url("/themes/custom/elfbv/assets/media/icons/close.svg");
+      padding: 0;
+      right: 28px;
+      top: 28px;
+      z-index: 101;
+    }
+  }
+
+  .ui-dialog-content {
+    padding: 128px 56px 40px 56px;
+
+    .elfbv-private-message-chat-clear-personal-history {
+      align-items: center;
+      column-gap: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      row-gap: 32px;
+
+      .title {
+        @extend %raleway-700;
+        color: $color-eternity2;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        font-size: 18px;
+        letter-spacing: -0.25px;
+        line-height: 24px;
+        text-align: center;
+        flex: 100%;
+      }
+
+      .submit .btn-primary,
+      .cancel .btn-primary {
+        @extend %raleway-700;
+        align-items: center;
+        background: $color-eternity10;
+        border-radius: 8px;
+        border: 1px solid $color-tenderness8;
+        color: $color-tenderness0;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        font-size: 15px;
+        line-height: 26px;
+        padding: 10px 24px;
+        width: 100%;
+
+        &:hover {
+          border-color: $color-tenderness6;
+        }
+      }
+
+      .submit,
+      .cancel {
+        flex: 0 0 48%;
+        width: calc((100% - 16px) / 2);
+      }
+    }
+  }
+}
+
+.modal-delete-comment {
+  background: $color-eternity10;
+  border-radius: 8px;
+  border: 1px solid $color-eternity8;
+  overflow: hidden;
+  padding: 128px 56px 40px 56px;
+
+  .ui-dialog-titlebar {
+    background: unset;
+    border: unset;
+    padding: 0;
+    position: unset;
+
+    &:before {
+      background: $color-energy10;
+      border-radius: 50%;
+      content: url("/themes/custom/elfbv/assets/media/icons/alert-danger.svg");
+      display: flex;
+      height: 56px;
+      justify-content: center;
+      left: 50%;
+      margin-top: 40px;
+      padding: 18px;
+      position: absolute;
+      top: 0;
+      transform: translate(-50%, 0%);
+      width: 56px;
+    }
+
+    .ui-dialog-title {
+      @extend %raleway-700;
+      color: $color-eternity2;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      font-size: 18px;
+      letter-spacing: -0.25px;
+      line-height: 24px;
+      margin: 0;
+      text-align: center;
+      white-space: normal;
+      width: 100%;
+    }
+
+    .ui-dialog-titlebar-close {
+      box-shadow: unset;
+      content: url("/themes/custom/elfbv/assets/media/icons/close.svg");
+      padding: 0;
+      right: 28px;
+      top: 28px;
+      z-index: 101;
+    }
+  }
+
+  #drupal-modal {
+    padding: 0;
+
+    .comment-comment-forum-delete-form {
+      @extend %inter-400;
+      color: $color-eternity3;
+      font-size: 15px;
+      letter-spacing: -0.4px;
+      line-height: 26px;
+      margin-top: 16px;
+      text-align: center;
+    }
+  }
+
+  .ui-dialog-buttonpane {
+    background: unset;
+    border: unset;
+    padding: 0;
+
+    .ui-dialog-buttonset {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 32px;
+      width: 100%;
+
+      .button {
+        @extend %raleway-700;
+        align-items: center;
+        background: $color-eternity10;
+        border-radius: 8px;
+        border: 1px solid $color-tenderness8;
+        color: $color-tenderness0;
+        flex: 0 0 48%;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        font-size: 15px;
+        line-height: 26px;
+        margin: 0;
+        padding: 10px 24px;
+        width: calc((100% - 16px) / 2);
+
+        &:hover {
+          border-color: $color-tenderness6;
+        }
+      }
+    }
+  }
+}
+
+#drupal-modal {
+  .select2-container--default {
+    .select2-search--dropdown {
+      padding: 8px;
+      border-bottom: 1px solid $color-eternity8;
+
+      .select2-search__field {
+        border-radius: 8px;
+        color: $color-eternity0;
+        font-size: 14px;
+        letter-spacing: -.3px;
+        line-height: 1.857;
+      }
+    }
+
+    .select2-results__options {
+      max-height: 160px;
+    }
+  }
+
+  .select2-container--open {
+    .select2-dropdown.select2-dropdown--above,
+    .select2-dropdown.select2-dropdown--below {
+      max-width: unset;
+
+      .select2-results__option {
+        padding-left: 8px;
+      }
+    }
+  }
+}

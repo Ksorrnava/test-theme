@@ -1,0 +1,151 @@
+@use "../base/variables_drupal" as *;
+
+.pagination {
+  .page-item {
+    &:first-child {
+      border-radius: 8px 0 0 8px;
+    }
+
+    &:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+
+    &.pager__item--first,
+    &.pager__item--previous,
+    &.pager__item--next,
+    &.pager__item--last {
+      position: relative;
+
+      .page-link:before,
+      .page-link:after {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &.pager__item--first .page-link:before,
+    &.pager__item--last .page-link:before {
+      left: 12px;
+      transform: translate(0, -50%);
+    }
+
+    &.pager__item--first .page-link:after,
+    &.pager__item--last .page-link:after {
+      left: 18px;
+      transform: translate(0, -50%);
+    }
+
+    &.pager__item--first .page-link {
+
+      &:hover,
+      &:active {
+        &:before,
+        &:after {
+          content: url("/themes/custom/elfbv/assets/media/icons/arrow-left-blue.svg");
+        }
+      }
+
+      &:before,
+      &:after {
+        content: url("/themes/custom/elfbv/assets/media/icons/arrow-left.svg");
+      }
+    }
+
+    &.pager__item--previous .page-link {
+      &:hover,
+      &:active {
+        &:after {
+          content: url("/themes/custom/elfbv/assets/media/icons/arrow-left-blue.svg");
+        }
+      }
+
+      &:after {
+        content: url("/themes/custom/elfbv/assets/media/icons/arrow-left.svg");
+      }
+    }
+
+    &.pager__item--next .page-link {
+      &:hover,
+      &:active {
+        &:after {
+          bottom: 50%;
+          content: url("/themes/custom/elfbv/assets/media/icons/arrow-left-blue.svg");
+          left: unset;
+          right: 50%;
+          rotate: 180deg;
+          top: unset;
+        }
+      }
+
+      &:after {
+        content: url("/themes/custom/elfbv/assets/media/icons/arrow-right.svg");
+      }
+    }
+
+    &.pager__item--last .page-link {
+      &:hover,
+      &:active {
+        &:before,
+        &:after {
+          bottom: 50%;
+          content: url("/themes/custom/elfbv/assets/media/icons/arrow-left-blue.svg");
+          rotate: 180deg;
+          top: unset;
+          left: unset;
+        }
+
+        &:before {
+          left: 18px;
+        }
+
+        &:after {
+          left: 12px;
+        }
+      }
+
+      &:before,
+      &:after {
+        content: url("/themes/custom/elfbv/assets/media/icons/arrow-right.svg");
+      }
+    }
+
+    &:hover {
+      & > .page-link {
+        color: $color-tenderness0;
+      }
+    }
+
+    &.active,
+    &.is-active {
+      & > .page-link {
+        background: $color-tenderness0;
+        border: 1px solid $color-eternity8;
+        color: $color-eternity10;
+      }
+    }
+
+    .page-link {
+      @extend %inter-600;
+      align-items: center;
+      background: $color-eternity10;
+      border: 1px solid $color-eternity8;
+      box-shadow: unset;
+      box-sizing: content-box;
+      color: $color-eternity4;
+      display: flex;
+      font-size: 14px;
+      justify-content: center;
+      letter-spacing: -0.3px;
+      line-height: 24px;
+      min-height: 34px;
+      min-width: 34px;
+      padding: 0;
+
+      span {
+        display: none;
+      }
+    }
+  }
+}

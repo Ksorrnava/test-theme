@@ -1,0 +1,144 @@
+@use "../base/variables_drupal" as *;
+
+.forum-listing,
+.path-frontpage {
+  .block-system-breadcrumb-block {
+    display: none;
+  }
+
+  .block-system-main-block {
+    background: transparent !important;
+    padding: 0 !important;
+  }
+}
+
+.view {
+  .view-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+
+    .views-row {
+      background: $color-eternity10;
+      border: 1px solid $color-eternity8;
+      border-width: 1px 0;
+      padding: 16px;
+
+      .contextual-region,
+      .node--type-forum,
+      .node {
+        display: flex;
+        flex-direction: column;
+
+        &.node--view-mode-feed .node__title h2 {
+          font-size: 18px;
+          letter-spacing: -0.25px;
+          line-height: 24px;
+        }
+
+        &.node--view-mode-list .node__title h2 {
+          font-size: 15px;
+          line-height: 26px;
+        }
+
+        .node__eyebrow {
+          margin: 0 0 12px 0;
+          padding: 0;
+
+          &--author {
+
+          }
+
+          &--date {
+            @extend %inter-500;
+            color: $color-eternity4;
+            font-size: 14px;
+            letter-spacing: -0.3px;
+            line-height: 24px;
+          }
+
+          &--category {
+
+          }
+        }
+
+        .node__title {
+          margin: 0;
+          padding: 0 4px;
+
+          h2 {
+            @extend %raleway-700;
+            font-feature-settings: 'pnum' on, 'lnum' on;
+
+            &:hover {
+              color: $color-energy0;
+            }
+
+            a {
+              color: $color-eternity0;
+
+              &:hover {
+                color: $color-energy0;
+              }
+            }
+          }
+        }
+
+        .node__content {
+          border-bottom: 1px solid $color-eternity8;
+          overflow-wrap: anywhere;
+          padding: 10px 4px 12px 4px;
+
+          p {
+            @extend %inter-400;
+            color: $color-eternity2;
+            font-size: 14px;
+            letter-spacing: -0.3px;
+            line-height: 24px;
+          }
+
+          .media-library-item__name {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .forum-listing,
+  .path-frontpage {
+    .block-system-main-block {
+      border: unset;
+      margin: 0 24px;
+    }
+  }
+
+  .view {
+    .view-content {
+      .views-row {
+        border-radius: 8px;
+        border: 1px solid $color-eternity8 !important;
+        padding: 24px !important;
+
+        .contextual-region {
+          &.node--view-mode-feed .node__title h2 {
+            font-size: 20px;
+            line-height: 28px;
+          }
+
+          .node__content {
+            padding-top: 16px;
+
+            p {
+              font-size: 15px;
+              letter-spacing: -0.4px;
+              line-height: 26px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+@use "../base/variables_drupal" as *;
+
+.ui-logout {
+  max-width: 640px;
+  width: 100% !important;
+
+  form {
+    width: 100%;
+  }
+
+  .user-logout-modal {
+    width: 100%;
+    justify-content: center;
+    padding: 40px 41px;
+  }
+
+  .form-content__wrapper {
+    row-gap: 32px;
+    align-items: center;
+
+    &>.form-wrapper {
+      display: flex;
+      column-gap: 16px;
+      justify-content: center;
+    }
+  }
+
+  .button {
+    margin: 0;
+    min-width: 121px;
+    @extend %raleway-700;
+    font-size: 15px;
+    line-height: 1.733;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 23px;
+    padding-right: 23px;
+    color: $color-eternity10;
+    letter-spacing: 0;
+
+    &.dialog-cancel {
+      background-color: $color-eternity10;
+      color: $color-eternity0;
+      border-color: $color-eternity6;
+
+      &:hover {
+        background-color: $color-eternity6;
+      }
+    }
+  }
+}
+
+.form--set-cultural-group__heading {
+  @extend %raleway-700;
+  font-size: 14px;
+  line-height: 1.814;
+  letter-spacing: -0.25px;
+  color: $color-eternity2;
+  text-align: center;
+  max-width: 436px;
+}
+
+.user-logout-modal__icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: $color-energy10;
+}
+
+.user-logout-modal__info-text {
+  @extend %raleway-700;
+  font-size: 18px;
+  line-height: 1.333;
+  letter-spacing: -0.25px;
+  color: $color-eternity2;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .ui-logout {
+    height: max-content !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    overflow: hidden !important;
+    width: calc(100% - 32px);
+
+    #drupal-modal {
+      overflow-x: hidden;
+    }
+
+    &.ui-dialog {
+      .ui-dialog-titlebar {
+        position: absolute;
+        background-color: transparent;
+        border-bottom: unset;
+        z-index: 101;
+        left: unset;
+        right: 24px;
+
+        button {
+          background-image: url("/themes/custom/elfbv/assets/media/icons/close.svg");
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $screen__l) {
+  .ui-logout {
+    .set-cultural-group {
+      padding-left: 56px;
+      padding-right: 56px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ */
+#}
+{% set region_classes = [
+  'region--nav-mobile',
+  'menu__left',
+  'left-menu'
+
+] %}
+{% set close_icon = path_images ~ '/icons/close.svg' %}
+
+{% if content %}
+  <div{{ attributes.addClass(region_classes).setAttribute('id', 'menuLeft') }}>
+    <a class="left-menu__button-close" type="button">
+      {{ source(close_icon) }}
+    </a>
+    {% for key, block in content %}
+      {% if key starts with '#' == false %}
+        <div class="left-menu__item">
+          {{ block }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ */
+#}
+
+{% block paragraph %}
+    <div class="referral-card">
+        {% block content %}
+            {% if content.referral_link[0]['#url'] is defined and content.referral_link[0]['#url'] %}
+                <a href="{{ content.referral_link[0]['#url'] }}" target="_blank">
+                    {{ content.referral_logo }}
+                </a>
+            {% else %}
+                {{ content.referral_logo }}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock paragraph %}

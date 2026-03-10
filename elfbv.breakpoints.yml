@@ -1,0 +1,31 @@
+elfbv.screen.mobile:
+  label: mobile
+  mediaQuery: '(max-width: 767px)'
+  weight: 1
+  group: elfbv.screen
+  multipliers:
+    - 1x
+
+elfbv.screen.tablet:
+  label: tablet
+  mediaQuery: '(min-width: 768px) and (max-width: 1024px)'
+  weight: 2
+  group: elfbv.screen
+  multipliers:
+    - 1x
+
+elfbv.screen.desktop:
+  label: desktop
+  mediaQuery: '(min-width: 1025px) and (max-width: 1250px)'
+  weight: 3
+  group: elfbv.screen
+  multipliers:
+    - 1x
+
+elfbv.screen.lg-desktop:
+  label: lg-desktop
+  mediaQuery: '(min-width: 1251px)'
+  weight: 4
+  group: elfbv.screen
+  multipliers:
+    - 1x

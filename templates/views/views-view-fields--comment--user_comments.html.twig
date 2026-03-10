@@ -1,0 +1,30 @@
+
+<li class="comment-list__item">
+  {% if fields["comment_author_picture"].content matches '/<img/' %}
+    <div class="comment-list__item-image">
+      {{ fields["comment_author_picture"].content }}
+    </div>
+  {% endif %}
+
+  {% if fields["name_1"] %}
+    <div class="comment-list__item-name">{{ fields["name_1"].content }}</div>
+  {% endif %}
+  {% if fields["created"] %}
+    <div class="comment-list__item-date">{{ fields["created"].content }}</div>
+  {% endif %}
+
+  {% if fields["comment_body"] %}
+    <div class="comment-list__item-body">
+      {{ fields["comment_body"].content }}
+    </div>
+    {% if fields["title"] %}
+      <div class="comment-list__item-node-link">
+        {{ fields["title"].content }}
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if fields["like_and_dislike"].content matches '/<a/' %}
+    {{ fields["like_and_dislike"].content }}
+  {% endif %}
+</li>

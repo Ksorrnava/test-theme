@@ -1,0 +1,179 @@
+@use "../base/variables_drupal" as *;
+
+/* Slider */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.dragging {
+    cursor: pointer;
+    cursor: hand;
+  }
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  .slick-loading & {
+    visibility: hidden;
+  }
+}
+
+.slick-slide {
+  float: left;
+  height: 450px;
+
+  [dir="rtl"] & {
+    float: right;
+  }
+
+  img {
+    border-radius: 8px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  &.videos--item iframe {
+    height: 100%;
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  &.slick-loading img {
+    display: none;
+  }
+
+  display: none;
+
+  &.dragging img {
+    pointer-events: none;
+  }
+
+  .slick-initialized & {
+    display: block;
+  }
+
+  .slick-loading & {
+    visibility: hidden;
+  }
+
+  .slick-vertical & {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+  }
+}
+
+.slick-arrow {
+  display: none;
+}
+
+.slick-dots {
+  align-items: center;
+  column-gap: 12px;
+  display: flex;
+  height: auto;
+  justify-content: center;
+  margin: 10px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .slick-active button {
+    background: $color-tenderness0;
+  }
+
+  button {
+    background: $color-eternity7;
+    border-radius: 50%;
+    border: unset;
+    font-size: 0;
+    height: 8px;
+    padding: 0;
+    width: 8px;
+  }
+}
+
+@media (min-width: $screen__l) {
+  .slick-slider {
+    & > button {
+      position: absolute;
+      bottom: 0;
+    }
+
+    .slick-arrow {
+      align-items: center;
+      background: $color-eternity10;
+      border-radius: 8px;
+      border: 1px solid $color-eternity8;
+      bottom: -13px;
+      display: flex;
+      height: 36px;
+      justify-content: center;
+      width: 36px;
+
+      &:hover {
+        border: 1px solid #D5D5D5;
+      }
+    }
+
+    .slick-prev {
+      left: 0;
+    }
+
+    .slick-next {
+      right: 0;
+    }
+
+    .slick-dots {
+      margin: 26px 40px 14px 40px;
+    }
+  }
+}

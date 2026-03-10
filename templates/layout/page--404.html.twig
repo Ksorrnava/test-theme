@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ */
+#}
+<main role="main" class="error">
+  <div class="error__wrapper">
+    <div class="error__background-image">
+      <img src="{{ file_url('/themes/custom/elfbv/assets/media/errors/bg-error-main.svg') }}" alt="">
+    </div>
+    <div class="error__message">
+      <p class="error__title">404</p>
+      <p
+        class="error__text">{{ 'Welcome to the 404 page! You are here because you have entered the URL of a page that no longer exists or has been moved to a different address'|t }}</p>
+      <a class="error__button" href="/">{{ 'Go back to main page'|t }}</a>
+    </div>
+  </div>
+</main>

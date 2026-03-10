@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{#
+We call a macro which calls itself to render the full tree.
+@see https://twig.symfony.com/doc/3.x/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 0) }}
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+  {% set menu_base_class = 'menu__forum' %}
+  {% set menu_classes = [
+    'menu',
+    menu_base_class ~ '-dropdown',
+    'dropdown',
+    'collapse',
+  ] %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass(menu_classes).setAttribute('id', 'forumList') }}>
+    {% else %}
+      <ul>
+    {% endif %}
+
+    {% for item in items %}
+      <li{{ item.attributes.addClass('dropdown__item') }}>
+        <a class="dropdown__item-link" href="{{ item.url }}">
+          <p class="dropdown__title">{{ item.title }}</p>
+        </a>
+        {% if item.below %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  <a class="menu__forum-toggle show_hide_dropdown icon" type="button">
+    <img class="menu__form-icon" src="{{ file_url('themes/custom/elfbv/assets/media/icons/arrow-down.svg') }}" alt="form
+     top icon">
+  </a>
+{% endmacro %}

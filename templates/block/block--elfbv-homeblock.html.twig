@@ -1,0 +1,21 @@
+{#
+/**
+ *
+ * @see \Drupal\elfbv_frim\Plugin\Block\HomeBlock
+ */
+#}
+{% set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+] %}
+<div{{ attributes.addClass(classes) }}>
+
+  {% if content.default_clg_block %}
+    {{ content.default_clg_block }}
+  {% endif %}
+  <a class="dropdown-menu-home" href="{{ content.url }}">
+    <div class="dropdown-menu-logo"><img src="/themes/custom/elfbv/logo.svg"></div>
+  </a>
+
+</div>

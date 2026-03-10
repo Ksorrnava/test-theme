@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ */
+#}
+{% if content %}
+  <div{{ attributes.addClass('region--nav-branding') }}>
+    {{ content }}
+  </div>
+{% endif %}
