@@ -1,6 +1,7 @@
 # Elfbv Theme — Code & Performance Audit
 
-Generated: 2026-03-10
+Generated: 2026-03-10  
+Coverage: `elfbv.info.yml`, `elfbv.libraries.yml`, `elfbv.theme`, `templates/` (all folders), `src/`
 
 ---
 
@@ -12,20 +13,7 @@ Generated: 2026-03-10
 on every page — forms, fields, blocks, views, etc. Inside it, a user entity load and an image
 style URL build happen on each invocation. This is a serious performance issue.
 
-**Current code:**
-```php
-function elfbv_preprocess(&$variables, $hook) {
-  if (!empty($variables['directory'])) {
-    // Loads language_manager, loads user, loads image_style on EVERY hook call
-    $user = User::load(\Drupal::currentUser()->id());
-    $image_style = \Drupal::entityTypeManager()->getStorage('image_style')->load('thumbnail');
-    ...
-  }
-}
-```
-
-**Fix:** Move this logic to `elfbv_preprocess_page()` or `elfbv_preprocess_html()`, where it
-runs only once per page request:
+**Fix:** Move this logic to `elfbv_preprocess_page()` where it runs only once per page request:
 ```php
 function elfbv_preprocess_page(&$variables) {
   if (!empty($variables['directory'])) {
@@ -58,11 +46,9 @@ function elfbv_preprocess_page(&$variables) {
 
 ### 2. Invalid `libraries-override` syntax in `elfbv.info.yml`
 
-**Problem:** The bottom of `elfbv.info.yml` contains an invalid block that will be silently
-ignored by Drupal. The value `'false'` is not valid for disabling a CSS asset this way, and
-the syntax is placed at the wrong level.
+**Problem:** The bottom of `elfbv.info.yml` contains an invalid block silently ignored by Drupal.
 
-**Current (broken) code in elfbv.info.yml:**
+**Current (broken):**
 ```yaml
 bootstrap5/global-styling:
   css:
@@ -70,7 +56,7 @@ bootstrap5/global-styling:
       css/style.css: 'false'
 ```
 
-**Fix:** Move it inside the proper `libraries-override` key with correct boolean `false`:
+**Fix:** Use the correct `libraries-override` key with boolean `false`:
 ```yaml
 libraries-override:
   bootstrap5/global-styling:
@@ -81,23 +67,36 @@ libraries-override:
 
 ---
 
+### 3. Hardcoded absolute SVG path in Twig (node--forum.html.twig)
+
+**Problem:** An icon is loaded using a hardcoded absolute server path:
+```twig
+{{ source("/themes/custom/elfbv/assets/media/icons/pencil-gray.svg") }}
+```
+This will break if the theme is ever renamed, moved, or the site runs in a subdirectory.
+
+**Fix:** Use the `path_images` variable already available in the template:
+```twig
+{{ source(path_images ~ '/icons/pencil-gray.svg') }}
+```
+
+---
+
 ## 🟡 Medium Issues
 
-### 3. Inline Yandex Metrika script bypasses asset pipeline (elfbv.theme)
+### 4. Inline Yandex Metrika script bypasses asset pipeline (elfbv.theme)
 
 **Problem:** The Yandex.Metrika tracking code is injected via `Markup::create()` with raw
-inline JavaScript in `elfbv_page_attachments_alter()`. This prevents Drupal's caching and
-aggregation from working on it, and will conflict with strict Content Security Policy headers.
+inline JavaScript. This prevents Drupal's caching/aggregation and conflicts with CSP headers.
 
-**Fix:** Move the script to a dedicated JS file, e.g. `assets/js/yandex-metrika.js`, and
-register it in `elfbv.libraries.yml`:
+**Fix:** Move to `assets/js/yandex-metrika.js` and register in `elfbv.libraries.yml`:
 ```yaml
 yandex-metrika:
   js:
     assets/js/yandex-metrika.js: { attributes: { async: true } }
   header: false
 ```
-Then attach it in `elfbv_page_attachments_alter()`:
+Then attach in `elfbv_page_attachments_alter()`:
 ```php
 function elfbv_page_attachments_alter(array &$attachments) {
   $attachments['#attached']['library'][] = 'elfbv/yandex-metrika';
@@ -106,12 +105,12 @@ function elfbv_page_attachments_alter(array &$attachments) {
 
 ---
 
-### 4. N+1 taxonomy entity loads in `elfbv_preprocess_node_taxonomy_translations()` (elfbv.theme)
+### 5. N+1 taxonomy loads without cache (elfbv.theme)
 
-**Problem:** For every node, this function calls `taxonomy_term` storage `load()` up to twice
-with no caching. On a listing page with 20 nodes, that's up to 40 uncached DB queries.
+**Problem:** `elfbv_preprocess_node_taxonomy_translations()` calls `taxonomy_term` storage
+`load()` for each node with no caching — up to 40 uncached DB queries on a listing page.
 
-**Fix:** Use a static cache to avoid repeated loads for the same term:
+**Fix:** Use a static cache:
 ```php
 function elfbv_preprocess_node_taxonomy_translations(&$variables) {
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -135,23 +134,19 @@ function elfbv_preprocess_node_taxonomy_translations(&$variables) {
 
 ---
 
-### 5. `drupal_menu()` called directly in Twig template (header.html.twig)
+### 6. `drupal_menu()` called directly in Twig (header.html.twig)
 
-**Problem:** `{{ drupal_menu('top-menu') }}` is called directly inside
-`templates/layout/header.html.twig`. While the Twig Tweak module makes this work, it bypasses
-Drupal's render pipeline and block/cache system, making the menu harder to manage and cache
-properly.
+**Problem:** `{{ drupal_menu('top-menu') }}` is called directly inside the header template.
+While Twig Tweak makes this work, it bypasses Drupal's block/cache system.
 
-**Fix:** Move menu rendering to a block placed in a region, or preprocess the menu in
-`elfbv_preprocess_page()` using the menu.link_tree service and pass it as a render array
-variable to the template.
+**Fix:** Place the menu as a block in a region, or preprocess it via the `menu.link_tree`
+service in `elfbv_preprocess_page()` and pass it as a render array variable.
 
 ---
 
-### 6. Missing `alt` attribute on logo `<img>` (header.html.twig)
+### 7. Missing `alt` attribute on logo `<img>` (header.html.twig)
 
-**Problem:** The logo image tag has no `alt` attribute, which is an accessibility (a11y)
-violation and will fail WCAG 2.1 Level A audits:
+**Problem:** Fails WCAG 2.1 Level A:
 ```twig
 <img src="{{ logo_icon }}">
 ```
@@ -163,19 +158,79 @@ violation and will fail WCAG 2.1 Level A audits:
 
 ---
 
+### 8. Empty block template file (block--mobile-forum-branding-block.html.twig)
+
+**Problem:** `templates/block/block--mobile-forum-branding-block.html.twig` is a completely
+empty file (0 bytes). An empty template override will render nothing but still gets loaded
+and parsed by Twig on every relevant page, wasting cycles.
+
+**Fix:** Either add valid markup, or delete the file entirely if the block should not render.
+If the intent is to hide the block, use Drupal's block visibility settings instead.
+
+---
+
+### 9. `$this->entity` used without null-safety in ForumNodePreprocessHandler (src/)
+
+**Problem:** In `ForumNodePreprocessHandler::preprocess()`, `$this->entity` is set in
+`isApplicable()` but used directly in `preprocess()` without a null check:
+```php
+$variables['topic_comments_count'] = $this->entity->getCommentsCount() ?? 0;
+```
+If `preprocess()` is ever called without `isApplicable()` having run first (e.g. during
+testing or future refactoring), this will throw a fatal error.
+
+**Fix:** Add a guard at the top of `preprocess()`:
+```php
+public function preprocess(array &$variables): void {
+  if (!isset($this->entity)) {
+    return;
+  }
+  // ... rest of method
+}
+```
+
+---
+
+### 10. `->render()` called directly on translatable string (ForumNodePreprocessHandler.php)
+
+**Problem:**
+```php
+$variables['topic_comments_count_label'] = $this->formatPlural(...)->render();
+```
+Calling `->render()` on a `TranslatableMarkup` object eagerly renders it outside the render
+pipeline, preventing Drupal from applying cache metadata and language negotiation properly.
+
+**Fix:** Pass the object directly and let Drupal render it lazily:
+```php
+$variables['topic_comments_count_label'] = $this->formatPlural(
+  $comments_count,
+  '1 комментарий',
+  '@count комментариев',
+  ['@count' => $comments_count]
+);
+```
+
+---
+
+### 11. Duplicate comment templates with identical SHA (templates/content/)
+
+**Problem:** `comment--comment-business.html.twig` and `comment--comment-forum.html.twig`
+have the **exact same SHA** (`a4de74063d74f3669fe2541e07a09c87f6639a7e`), meaning they are
+byte-for-byte identical. This is a maintenance hazard — any future changes must be applied
+to both files manually.
+
+**Fix:** Extract the shared markup into a dedicated include partial, e.g.
+`templates/content/comment--base.html.twig`, and use `{% include %}` in both:
+```twig
+{# comment--comment-forum.html.twig #}
+{% include '@elfbv/templates/content/comment--base.html.twig' %}
+```
+
+---
+
 ## 🟢 Low / Minor Issues
 
-### 7. `slick.min.js` missing `minified: true` flag (elfbv.libraries.yml)
-
-**Problem:** Loading a pre-minified file without declaring it can cause Drupal's aggregation
-to re-process it unnecessarily.
-
-**Current:**
-```yaml
-slick-slider-library:
-  js:
-    assets/js/slick.min.js: { }
-```
+### 12. `slick.min.js` missing `minified: true` flag (elfbv.libraries.yml)
 
 **Fix:**
 ```yaml
@@ -186,47 +241,15 @@ slick-slider-library:
 
 ---
 
-### 8. Deprecated `core/jquery.once` dependency (elfbv.libraries.yml)
+### 13. Deprecated `core/jquery.once` dependency (elfbv.libraries.yml)
 
-**Problem:** `core/jquery.once` is deprecated in Drupal 10 and removed in Drupal 11.
-The `visually-impaired` library lists both `core/jquery.once` and `core/once`, which
-is redundant and will generate deprecation notices.
-
-**Current:**
-```yaml
-visually-impaired:
-  js:
-    assets/js/visually_impaired.js: {}
-  dependencies:
-    - core/jquery
-    - core/jquery.once   # deprecated!
-    - core/once
-    - core/drupal
-    - core/jquery.cookie
-    - core/js-cookie
-```
-
-**Fix:** Remove `core/jquery.once`:
-```yaml
-visually-impaired:
-  js:
-    assets/js/visually_impaired.js: {}
-  dependencies:
-    - core/jquery
-    - core/once
-    - core/drupal
-    - core/jquery.cookie
-    - core/js-cookie
-```
+`core/jquery.once` is removed in Drupal 11. Remove it from `visually-impaired`, keeping only
+`core/once`.
 
 ---
 
-### 9. Add `defer` to non-critical JS assets (elfbv.libraries.yml)
+### 14. Add `defer` to non-critical JS assets (elfbv.libraries.yml)
 
-**Problem:** `scripts.js` and `slick_sliders.js` are loaded without any loading hint, blocking
-page render.
-
-**Fix:** Add `defer: true` to non-critical scripts:
 ```yaml
 global-styling:
   js:
@@ -235,38 +258,31 @@ global-styling:
 
 ---
 
-### 10. `dvh-100` utility class used without fallback (html.html.twig)
+### 15. `dvh-100` without CSS fallback (html.html.twig)
 
-**Problem:** `dvh` (dynamic viewport height) is used on `<html>` and `<body>` without a
-fallback for older browsers that don't support it. This can cause layout issues on Safari iOS
-< 15.4 or older Android browsers.
+**Problem:** `dvh` (dynamic viewport height) is unsupported on Safari iOS < 15.4.
 
-**Fix:** Add `vh-100` as a fallback class before `dvh-100`, or handle it via CSS:
-```twig
-<html{{ html_attributes.addClass('h-100') }}>
-<body{{ attributes.addClass(body_classes, 'h-100') }}>
-```
-Then in CSS:
+**Fix:** Handle in CSS:
 ```css
 html, body {
   height: 100vh; /* fallback */
   height: 100dvh;
 }
 ```
+And remove the utility class from the Twig template.
 
 ---
 
-### 11. Hardcoded copyright year via `date('Y')` (elfbv.theme)
+### 16. Hardcoded copyright year via `date('Y')` bypasses cache (elfbv.theme)
 
-**Problem:** In `elfbv_theme_suggestions_region_alter()`, the copyright is set as:
-```php
-$variables['copyright'] = '© Emigram ' . date('Y');
-```
-This works but bypasses Drupal's translation/config system and won't update on cached pages
-until cache is cleared.
+`$variables['copyright'] = '© Emigram ' . date('Y');` won't update on cached pages.
+Make it a theme setting or add proper cache `max-age` to the region.
 
-**Fix:** Either make this a theme setting (configurable via `/admin/appearance/settings/elfbv`),
-or ensure the region has a proper `max-age` cache metadata set.
+---
+
+### 17. `views-view-unformatted--business.html.twig` and `--leaf-child.html.twig` are identical
+
+Same as issue #11 — both templates share the same SHA. Extract shared markup into a base include.
 
 ---
 
@@ -274,10 +290,15 @@ or ensure the region has a proper `max-age` cache metadata set.
 
 - Preprocess logic for nodes correctly delegated to service handler classes
   (`ForumNodePreprocessHandler`, `BusinessNodePreprocessHandler`, `FaqNodePreprocessHandler`)
+- `#lazy_builder` used in `ForumNodePreprocessHandler` for view counts — excellent pattern
+  that correctly defers uncacheable statistics rendering
+- `TrustedCallbackInterface` correctly implemented for the lazy builder
+- Constructor injection (not `\Drupal::service()`) used in all HookHandler classes
 - `elfbv_forms_attach_form_id()` recursion is clean and well-structured
-- Theme suggestions for nodes, tables, blocks, and pages follow Drupal conventions correctly
-- `libraries-extend` for `media_library` UI is properly declared in `info.yml`
-- Templates are well-organized into subdirectories by concern (layout, block, content, etc.)
+- Theme suggestions for nodes, tables, blocks, pages follow Drupal conventions
+- `libraries-extend` for `media_library` UI correctly declared in `info.yml`
+- Templates organized into subdirectories by concern
+- `visually_impaired.html.twig` implemented as a proper accessible toolbar
 
 ---
 
@@ -287,12 +308,18 @@ or ensure the region has a proper `max-age` cache metadata set.
 |---|----------|------|-------|
 | 1 | 🔴 Critical | elfbv.theme | `elfbv_preprocess()` fires on every hook |
 | 2 | 🔴 Critical | elfbv.info.yml | Invalid `libraries-override` syntax |
-| 3 | 🟡 Medium | elfbv.theme | Inline Yandex Metrika script |
-| 4 | 🟡 Medium | elfbv.theme | N+1 taxonomy loads without cache |
-| 5 | 🟡 Medium | header.html.twig | `drupal_menu()` called directly in Twig |
-| 6 | 🟡 Medium | header.html.twig | Missing `alt` on logo `<img>` |
-| 7 | 🟢 Low | elfbv.libraries.yml | `slick.min.js` missing `minified: true` |
-| 8 | 🟢 Low | elfbv.libraries.yml | Deprecated `core/jquery.once` dependency |
-| 9 | 🟢 Low | elfbv.libraries.yml | No `defer` on non-critical JS |
-| 10 | 🟢 Low | html.html.twig | `dvh-100` without fallback |
-| 11 | 🟢 Low | elfbv.theme | Hardcoded `date('Y')` in copyright |
+| 3 | 🔴 Critical | node--forum.html.twig | Hardcoded absolute SVG path |
+| 4 | 🟡 Medium | elfbv.theme | Inline Yandex Metrika script |
+| 5 | 🟡 Medium | elfbv.theme | N+1 taxonomy loads without cache |
+| 6 | 🟡 Medium | header.html.twig | `drupal_menu()` called directly in Twig |
+| 7 | 🟡 Medium | header.html.twig | Missing `alt` on logo `<img>` |
+| 8 | 🟡 Medium | block--mobile-forum-branding-block.html.twig | Empty template file |
+| 9 | 🟡 Medium | ForumNodePreprocessHandler.php | `$this->entity` used without null-safety |
+| 10 | 🟡 Medium | ForumNodePreprocessHandler.php | `->render()` called on TranslatableMarkup |
+| 11 | 🟡 Medium | comment--comment-*.html.twig | Duplicate identical templates |
+| 12 | 🟢 Low | elfbv.libraries.yml | `slick.min.js` missing `minified: true` |
+| 13 | 🟢 Low | elfbv.libraries.yml | Deprecated `core/jquery.once` dependency |
+| 14 | 🟢 Low | elfbv.libraries.yml | No `defer` on non-critical JS |
+| 15 | 🟢 Low | html.html.twig | `dvh-100` without CSS fallback |
+| 16 | 🟢 Low | elfbv.theme | Hardcoded `date('Y')` in copyright |
+| 17 | 🟢 Low | views templates | Duplicate identical view templates |
